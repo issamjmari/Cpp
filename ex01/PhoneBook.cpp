@@ -5,6 +5,19 @@
 #include <iomanip>
 
 
+void    Print_contact_data(Contact contact)
+{
+    std::cout << "first name is : ";
+    std::cout << contact.get_first_name(contact) << std::endl;
+    std::cout << "last name is : ";
+    std::cout << contact.get_last_name(contact) << std::endl;
+    std::cout << "nickname is : ";
+    std::cout << contact.get_nickname(contact) << std::endl;
+    std::cout << "phone_number is : ";
+    std::cout << contact.get_phone(contact) << std::endl;
+    std::cout << "darkest secret is : ";
+    std::cout << contact.get_darkestsecret(contact) << std::endl;
+}
 void    Data_printing(Contact contact[])
 {
     int i = 0;
@@ -47,16 +60,26 @@ int main()
 {
     int         i = 0;
     std::string input;
+    int         contact_info;
     Contact		cont;
 	PhoneBook	phonebook;
     while (1)
     {
+        std::cout << "PhoneBook : ";
         getline(std::cin, input);
-        if (input.compare("ADD") == 0)
+        if (input == "ADD")
 		    cont.fill_contact(phonebook.Contacts[i++]);
-        else if (input.compare("SEARCH") == 0)
+        else if (input == "SEARCH")
+        {
             Data_printing(phonebook.Contacts);
-        else if (input.compare("EXIT") == 0)
+            std::cout << "Please enter the index of the contact you need : ";
+            std::cin >> contact_info;
+            if (contact_info >= 0 && contact_info <= 7)
+                Print_contact_data(phonebook.Contacts[contact_info]);
+            else
+                std::cout << "Index entered was not correct, please search again with a correct one\n";
+        }
+        else if (input == "EXIT")
             exit(1);
         else
             continue;

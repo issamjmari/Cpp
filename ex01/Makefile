@@ -4,7 +4,7 @@ GFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 PHONEBOOK = phonebook
 all :
-	$(GPP) $(GFLAGS) $(SRC) -o $(PHONEBOOK)
+	$(GPP)  $(SRC) -o $(PHONEBOOK)
 fclean :
 	$(RM) $(PHONEBOOK)
 re : fclean all

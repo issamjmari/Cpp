@@ -74,7 +74,8 @@ int main()
             Data_printing(phonebook.Contacts);
             std::cout << "Please enter the index of the contact you need : ";
             std::cin >> contact_info;
-            if (contact_info >= 0 && contact_info <= 7)
+            if ((contact_info >= 0 && contact_info <= 7) && 
+            phonebook.Contacts[contact_info].get_first_name(phonebook.Contacts[contact_info]).length() > 0)
                 Print_contact_data(phonebook.Contacts[contact_info]);
             else
                 std::cout << "Index entered was not correct, please search again with a correct one\n";

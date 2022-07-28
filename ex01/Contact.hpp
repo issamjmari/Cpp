@@ -6,44 +6,76 @@
 	class Contact
 	{
 		private:
+			int					index;
         	std::string			first_name;
         	std::string			last_name;
         	std::string			nickname;
         	std::string			phone_number;
         	std::string			darkest_secret;
     	public:
-			void fill_contact(Contact &contact)
+			void fill_contact(int index)
 			{
+				this->index = index;
 				std::cout << "first name is : ";
-				getline(std::cin, contact.first_name);
+				getline(std::cin, this->first_name);
+				while (this->first_name.length() == 0)
+				{
+					std::cout << "empty first name not allowed, try again please\n";
+					std::cout << "first name is : ";
+					getline(std::cin, this->first_name);
+				}
 				std::cout << "last name is : ";
-				getline(std::cin, contact.last_name);
+				getline(std::cin, this->last_name);
+				while (this->last_name.length() == 0)
+				{
+					std::cout << "empty last name not allowed, try again please\n";
+					std::cout << "first name is : ";
+					getline(std::cin, this->last_name);
+				}
 				std::cout << "nickname is : ";
-				getline(std::cin, contact.nickname);
+				getline(std::cin, this->nickname);
+				while (this->nickname.length() == 0)
+				{
+					std::cout << "empty nickname not allowed, try again please\n";
+					std::cout << "first name is : ";
+					getline(std::cin, this->nickname);
+				}
 				std::cout << "phone_number is : ";
-				getline(std::cin, contact.phone_number);
+				getline(std::cin, this->phone_number);
+				while (this->phone_number.length() == 0)
+				{
+					std::cout << "empty phone number not allowed, try again please\n";
+					std::cout << "first name is : ";
+					getline(std::cin, this->phone_number);
+				}
 				std::cout << "darkest secret is : ";
-				getline(std::cin, contact.darkest_secret);
+				getline(std::cin, this->darkest_secret);
+				while (this->darkest_secret.length() == 0)
+				{
+					std::cout << "empty darkest secret not allowed, try again please\n";
+					std::cout << "first name is : ";
+					getline(std::cin, this->darkest_secret);
+				}
 			}
-			std::string	get_first_name(Contact contact)
+			std::string	g_first_name()
 			{
-				return (contact.first_name);
+				return (this->first_name);
 			}
-			std::string	get_last_name(Contact contact)
+			std::string	g_last_name()
 			{
-				return (contact.last_name);
+				return (this->last_name);
 			}
-			std::string	get_nickname(Contact contact)
+			std::string	g_nickname()
 			{
-				return (contact.nickname);
+				return (this->nickname);
 			}
-			std::string	get_phone(Contact contact)
+			std::string	g_phone()
 			{
-				return (contact.phone_number);
+				return (this->phone_number);
 			}
-			std::string	get_darkestsecret(Contact contact)
+			std::string	g_darkestsecret()
 			{
-				return (contact.darkest_secret);
+				return (this->darkest_secret);
 			}
 	} ;
 #endif

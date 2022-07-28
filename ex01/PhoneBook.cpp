@@ -5,22 +5,25 @@
 #include <iomanip>
 
 
-void    Print_contact_data(Contact contact)
+void    Print_contact_data(int index, PhoneBook phonebook)
 {
     std::cout << "first name is : ";
-    std::cout << contact.get_first_name(contact) << std::endl;
+    std::cout << phonebook.get_first_name(index) << std::endl;
     std::cout << "last name is : ";
-    std::cout << contact.get_last_name(contact) << std::endl;
+    std::cout << phonebook.get_last_name(index) << std::endl;
     std::cout << "nickname is : ";
-    std::cout << contact.get_nickname(contact) << std::endl;
+    std::cout << phonebook.get_nickname(index) << std::endl;
     std::cout << "phone_number is : ";
-    std::cout << contact.get_phone(contact) << std::endl;
+    std::cout << phonebook.get_phone(index) << std::endl;
     std::cout << "darkest secret is : ";
-    std::cout << contact.get_darkestsecret(contact) << std::endl;
+    std::cout << phonebook.get_darkestsecret(index) << std::endl;
 }
-void    Data_printing(Contact contact[])
+void    Data_printing(PhoneBook phonebook)
 {
     int i = 0;
+    std::string first_n;
+    std::string last_n;
+    std::string nickname;
     std::cout << std::setw(10) << "-----------";
     std::cout << std::setw(10) << "-----------";
     std::cout << std::setw(10) << "-----------";
@@ -38,22 +41,43 @@ void    Data_printing(Contact contact[])
     std::cout << std::setw(10) << "-----------";
     std::cout << std::setw(10) << "-----------";
     std::cout << std::setw(10) << "------------\n";
-    while (contact[i].get_first_name(contact[i]).length() > 0)
+    first_n = phonebook.get_first_name(i);
+    last_n = phonebook.get_last_name(i);
+    nickname = phonebook.get_nickname(i);
+    while (first_n.length() > 0)
     {
         std::cout << std::setw(1) << std::left << "|";
         std::cout << std::setw(10) << std::right << i;
         std::cout << std::setw(1) << std::left << "|";
-        std::cout << std::setw(10) << std::right << contact[i].get_first_name(contact[i]).substr(0, 9);
+        if (first_n.length() > 10)
+            std::cout << std::setw(10) << std::right << first_n.substr(0, 9) + ".";
+        else if (first_n.length() == 10)
+            std::cout << std::setw(10) << std::right << first_n.substr(0, 10);
+        else
+            std::cout << std::setw(10) << std::right << first_n.substr(0, 9);
         std::cout << std::setw(1) << std::left << "|";
-        std::cout << std::setw(10) << std::right << contact[i].get_last_name(contact[i]).substr(0, 9);
+        if (last_n.length() > 10)
+            std::cout << std::setw(10) << std::right << last_n.substr(0, 9) + ".";
+        else if (last_n.length() == 10)
+            std::cout << std::setw(10) << std::right << last_n.substr(0, 10);
+        else
+            std::cout << std::setw(10) << std::right << last_n.substr(0, 9);
         std::cout << std::setw(1) << std::left << "|";
-        std::cout << std::setw(10) << std::right << contact[i].get_nickname(contact[i]).substr(0, 9);
+        if (nickname.length() > 10)
+            std::cout << std::setw(10) << std::right << nickname.substr(0, 9) + ".";
+        else if (nickname.length() == 10)
+            std::cout << std::setw(10) << std::right << nickname.substr(0, 10);
+        else
+            std::cout << std::setw(10) << std::right << nickname.substr(0, 9);
         std::cout << std::setw(1) << std::left << "|\n";
         std::cout << std::setw(10) << "-----------";
         std::cout << std::setw(10) << "-----------";
         std::cout << std::setw(10) << "-----------";
         std::cout << std::setw(10) << "------------\n";
         i++;
+        first_n = phonebook.get_first_name(i);
+        last_n = phonebook.get_last_name(i);
+        nickname = phonebook.get_nickname(i);
     }
 }
 int main()
@@ -65,18 +89,18 @@ int main()
 	PhoneBook	phonebook;
     while (1)
     {
-        std::cout << "PhoneBook : ";
         getline(std::cin, input);
         if (input == "ADD")
-		    cont.fill_contact(phonebook.Contacts[i++]);
+        {
+            phonebook.set_new_contact(i++);
+        }
         else if (input == "SEARCH")
         {
-            Data_printing(phonebook.Contacts);
+            Data_printing(phonebook);
             std::cout << "Please enter the index of the contact you need : ";
             std::cin >> contact_info;
-            if ((contact_info >= 0 && contact_info <= 7) && 
-            phonebook.Contacts[contact_info].get_first_name(phonebook.Contacts[contact_info]).length() > 0)
-                Print_contact_data(phonebook.Contacts[contact_info]);
+            if ((contact_info >= 0 && contact_info <= 7) )
+                Print_contact_data(contact_info, phonebook);
             else
                 std::cout << "Index entered was not correct, please search again with a correct one\n";
         }

@@ -89,6 +89,7 @@ int main()
 	PhoneBook	phonebook;
     while (1)
     {
+        
         getline(std::cin, input);
         if (input == "ADD")
         {

@@ -2,18 +2,15 @@
 #define HUMAN_B_HPP
 	#include <string>
 	#include "Weapon.hpp"
+	#include <iostream>
 	class HumanB
 	{
 		private:
 			std::string name;
+			Weapon 		weapon();
 		public:
 			void	attack(void);
-			HumanB(Weapon weapon);
-			HumanB(void);
-	} ;
-	if (90[])
-	{
-		/* code */
-	}
-	
+			HumanB(std::string);
+			void setWeapon(Weapon &weapon);
+	} ; 
 #endif

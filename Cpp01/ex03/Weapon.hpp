@@ -8,6 +8,7 @@
 		public:
 			const std::string getType();
 			void		setType(std::string type);
+			Weapon(void);
 			Weapon(std::string s);
 	} ;
 #endif

@@ -7,10 +7,11 @@
 	{
 		private:
 			std::string name;
-			Weapon 		weapon();
+			Weapon		*weapon;
 		public:
 			void	attack(void);
 			HumanB(std::string);
+			// ~HumanB(void);
 			void setWeapon(Weapon &weapon);
 	} ; 
 #endif

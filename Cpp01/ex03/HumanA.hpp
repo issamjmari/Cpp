@@ -7,8 +7,9 @@
 	{
 		private:
 			std::string name;
-			Weapon weapon;
+			Weapon &weapon;
 		public:
+			
 			void	attack(void);
 			HumanA(std::string name, Weapon &weap);
 	} ;

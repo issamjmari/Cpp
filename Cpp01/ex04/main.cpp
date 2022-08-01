@@ -4,10 +4,11 @@
 
 int main(int ac, char **av)
 {
-	std::fstream new_file;
-	std::fstream out_file;
-	std::string	s1;
-	std::string s2;
+	std::ifstream new_file;
+	std::ofstream out_file;
+	size_t		found;
+	std::string	s1 = av[2];
+	std::string s2 = av[3];
 	std::string replace = ".replace";
 	new_file.open(av[1], std::ios::in);
 	if (!new_file)
@@ -16,14 +17,31 @@ int main(int ac, char **av)
 	{
 		out_file.open(av[1] + replace, std::ios::out);
 		std::string str;
-		while (1)
+		int k = 0;
+		while (getline(new_file, str))
 		{
-			new_file >> str;
-			out_file << str;
-			if(!new_file.eof())
-				out_file << std::endl;
-			if(new_file.eof())
-				break;
+			int found = str.find(s1);
+			int i = 0;
+			while (str[i])
+			{
+				if (found != std::string::npos)
+				{
+					while (str[i] && i < found)
+						out_file << str[i++];
+					out_file << s2;
+					i += s1.length();
+				}
+				else
+				{
+					while (str[i])
+						out_file << str[i++];
+					break;
+				}
+				found = str.find(s1, found + 1);
+			}
+			out_file << "\n";
 		}
+		out_file.close();
+		new_file.close();
 	}
 }

@@ -1,7 +1,6 @@
-#include <iostream> // stream with a lot of cream stream qdhqwbdjqwd
+#include <iostream>
 #include <string>
 #include <fstream>
-#include <stdlib.h>
 
 int main(int ac, char **av)
 {
@@ -18,23 +17,27 @@ int main(int ac, char **av)
 	{
 		out_file.open(av[1] + replace, std::ios::out);
 		std::string str;
+		int k = 0;
 		while (getline(new_file, str))
 		{
-			size_t found = str.find(s1);
-			while (1)
+			int found = str.find(s1);
+			int i = 0;
+			while (str[i])
 			{
 				if (found != std::string::npos)
 				{
-					out_file << str.substr(0, found);
+					while (str[i] && i < found)
+						out_file << str[i++];
 					out_file << s2;
-					str = str.substr(found + s1.length(), str.length());
+					i += s1.length();
 				}
 				else
 				{
-					out_file << str;
+					while (str[i])
+						out_file << str[i++];
 					break;
 				}
-				found = str.find(s1, 0);
+				found = str.find(s1, found + 1);
 			}
 			out_file << "\n";
 		}

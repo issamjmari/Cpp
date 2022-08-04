@@ -6,7 +6,7 @@
 	{
 		private:
 			int	fixed_num;
-			static const int fract_bits = 8;
+			static const int fract_bits;
 		public:
 			Fixed(void);
 			Fixed(const Fixed &ref);

@@ -1,5 +1,6 @@
 #include "Fixed.hpp"
 
+const int Fixed::fract_bits = 8;
 Fixed::Fixed(void) : fixed_num(0)
 {
 	std::cout << "Default constructor called\n";

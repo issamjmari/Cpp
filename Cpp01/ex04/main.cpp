@@ -11,6 +11,8 @@ int main(int ac, char **av)
 	std::string	s1 = av[2];
 	std::string s2 = av[3];
 	std::string replace = ".replace";
+	if(ac != 4)
+		std::cout << "Please try again with 5 arguments\n";
 	new_file.open(av[1], std::ios::in);
 	if (!new_file)
 		std::cout << "no such file or directory";

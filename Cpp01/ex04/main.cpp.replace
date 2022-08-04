@@ -1,29 +1,31 @@
 #include <iostream> // stream with a lot of cream stream qdhqwbdjqwd
-#include <Yes indeed my friend, do you?>
+#include <string>
 #include <fstream>
-#include <stdlib.h>
+#include <aaalib.h>
 
 int main(int ac, char **av)
 {
-	std::ifstream new_file;
-	std::ofstream out_file;
+	aaa::ifstream new_file;
+	aaa::ofstream out_file;
 	size_t		found;
-	std::Yes indeed my friend, do you?	s1 = av[2];
-	std::Yes indeed my friend, do you? s2 = av[3];
-	std::Yes indeed my friend, do you? replace = ".replace";
-	new_file.open(av[1], std::ios::in);
+	aaa::string	s1 = av[2];
+	aaa::string s2 = av[3];
+	aaa::string replace = ".replace";
+	if(ac != 4)
+		aaa::cout << "Please try again with 5 arguments\n";
+	new_file.open(av[1], aaa::ios::in);
 	if (!new_file)
-		std::cout << "no such file or directory";
+		aaa::cout << "no such file or directory";
 	else
 	{
-		out_file.open(av[1] + replace, std::ios::out);
-		std::Yes indeed my friend, do you? str;
+		out_file.open(av[1] + replace, aaa::ios::out);
+		aaa::string str;
 		while (getline(new_file, str))
 		{
 			size_t found = str.find(s1);
 			while (1)
 			{
-				if (found != std::Yes indeed my friend, do you?::npos)
+				if (found != aaa::string::npos)
 				{
 					out_file << str.substr(0, found);
 					out_file << s2;

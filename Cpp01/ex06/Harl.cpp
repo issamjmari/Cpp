@@ -25,37 +25,33 @@ void Harl::complain(std::string level)
 {
 	std::string str_table[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void (Harl::*ptr[]) () = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error,} ;
-	for(int i = 0; i < 4; i++)
+	int i = ((str_table[0] == level) * 0) + ((str_table[1] == level) * 1) + \
+	((str_table[2] == level) * 2) + ((str_table[3] == level) * 3);
+	if(i == 0 && str_table[0] != level)
+		i = -1;
+	switch (i)
 	{
-		if(level == str_table[i])
-		{
-			switch (i)
-			{
-				case 0:
-					std::cout << "[ DEBUG ]\n";
-					(this->*ptr[0]) ();
-					std::cout << "\n";
-				case 1:
-					std::cout << "[ INFO ]\n";
-					(this->*ptr[1]) ();
-					std::cout << "\n";
-				case 2:
-					std::cout << "[ WARNING ]\n";
-					(this->*ptr[2]) ();
-					std::cout << "\n";
-				case 3:
-					std::cout << "[ ERROR ]\n";
-					(this->*ptr[3]) ();
-					std::cout << "\n";
-				case 4:
-					return ;
-				i++;
-			}
-		}
-		else if (i == 3)
-		{
-			std::cout << "[ Probably complaining about insignificant problems ]\n";
+		case 0:
+			std::cout << "[ DEBUG ]\n";
+			(this->*ptr[0]) ();
+			std::cout << "\n";
+		case 1:
+			std::cout << "[ INFO ]\n";
+			(this->*ptr[1]) ();
+			std::cout << "\n";
+		case 2:
+			std::cout << "[ WARNING ]\n";
+			(this->*ptr[2]) ();
+			std::cout << "\n";
+		case 3:
+			std::cout << "[ ERROR ]\n";
+			(this->*ptr[3]) ();
+			std::cout << "\n";
+		case 4:
 			return ;
-		}
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]\n";
+			break;
+		i++;
 	}
 }

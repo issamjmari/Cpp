@@ -25,44 +25,63 @@ Fixed  &Fixed::operator=(const Fixed &point)
 }
 int  Fixed::operator >(const Fixed &point)
 {
-	return (this->fixed_num > point.getRawBits());
+	float first = (float) this->getRawBits() / (float) (1 << 8);
+	float second = (float) point.getRawBits() / (float) (1 << 8);
+	return (first > second);
 }
 int	 Fixed::operator <(const Fixed &point)
 {
-	return (this->fixed_num < point.getRawBits());
+	float first = (float) this->getRawBits() / (float) (1 << 8);
+	float second = (float) point.getRawBits() / (float) (1 << 8);
+	return (first < second);
 }
 int  Fixed::operator >=(const Fixed &point)
 {
-	return (this->fixed_num >= point.getRawBits());
+	float first = (float) this->getRawBits() / (float) (1 << 8);
+	float second = (float) point.getRawBits() / (float) (1 << 8);
+	return (first >= second);
 }
 int  Fixed::operator <=(const Fixed &point)
 {
-	return (this->fixed_num <= point.getRawBits());
+	float first = (float) this->getRawBits() / (float) (1 << 8);
+	float second = (float) point.getRawBits() / (float) (1 << 8);
+	return (first <= second);
 }
 int  Fixed::operator ==(const Fixed &point)
 {
-	return (this->fixed_num == point.getRawBits());
+	float first = (float) this->getRawBits() / (float) (1 << 8);
+	float second = (float) point.getRawBits() / (float) (1 << 8);
+	return (first == second);
 }
 int  Fixed::operator !=(const Fixed &point)
 {
-	return (this->fixed_num != point.getRawBits());
+	float first = (float) this->getRawBits() / (float) (1 << 8);
+	float second = (float) point.getRawBits() / (float) (1 << 8);
+	return (first != second);
 }
 float  Fixed::operator+(const Fixed &point)
 {
-	return (this->fixed_num + point.getRawBits());
+	float first = (float) this->getRawBits() / (float) (1 << 8);
+	float second = (float) point.getRawBits() / (float) (1 << 8);
+	return (first + second);
 }
 float  Fixed::operator-(const Fixed &point)
 {
-	return (this->fixed_num - point.getRawBits());
+	float first = (float) this->getRawBits() / (float) (1 << 8);
+	float second = (float) point.getRawBits() / (float) (1 << 8);
+	return (first - second);
 }
 float  Fixed::operator*(const Fixed &point)
 {
-	float out = ((float) (this->getRawBits()) / (float)(1 << 8)) * ((float) (point.getRawBits()) / (float)(1 << 8));
-	return (out);
+	float first = (float) this->getRawBits() / (float) (1 << 8);
+	float second = (float) point.getRawBits() / (float) (1 << 8);
+	return (first * second);
 }
 float  Fixed::operator/(const Fixed &point)
 {
-	return (this->fixed_num / point.getRawBits());
+	float first = (float) this->getRawBits() / (float) (1 << 8);
+	float second = (float) point.getRawBits() / (float) (1 << 8);
+	return (first / second);
 }
 Fixed	&Fixed::operator++ ()
 {
@@ -89,36 +108,45 @@ Fixed	Fixed::operator-- (int stuff)
 	return temp;
 }
 Fixed::~Fixed(void){}
-Fixed Fixed::min(Fixed &a, Fixed &b)
+float	Fixed::min(Fixed &a, Fixed &b)
 {
-	if(a < b)
-		return a;
+	float f_a = (float) a.getRawBits() / (float) (1 << 8);
+	float f_b =  (float) b.getRawBits() / (float) (1 << 8);
+	if(f_a < f_b)
+		return f_a;
 	else
-		return b;
+		return f_b;
 }
-Fixed Fixed::min(const Fixed &a, const Fixed &b)
+float	Fixed::min(const Fixed &a, const Fixed &b)
 {
-	if(a.getRawBits() > b.getRawBits())
-		return a;
+	float f_a = (float) a.getRawBits() / (float) (1 << 8);
+	float f_b =  (float) b.getRawBits() / (float) (1 << 8);
+	if(f_a < f_b)
+		return f_a;
 	else
-		return b;
+		return f_b;
 }
-Fixed Fixed::max(const Fixed &a, const Fixed &b)
+float	Fixed::max(const Fixed &a, const Fixed &b)
 {
-	if(a.getRawBits() > b.getRawBits())
-		return a;
+	float f_a = (float) a.getRawBits() / (float) (1 << 8);
+	float f_b =  (float) b.getRawBits() / (float) (1 << 8);
+	if(f_a > f_b)
+		return f_a;
 	else
-		return b;
+		return f_b;
 }
-Fixed Fixed::max(Fixed &a, Fixed &b)
+float	Fixed::max(Fixed &a, Fixed &b)
 {
-	if(a > b)
-		return (a);
+	float f_a = (float) a.getRawBits() / (float) (1 << 8);
+	float f_b =  (float) b.getRawBits() / (float) (1 << 8);
+	if(f_a > f_b)
+		return f_a;
 	else
-		return (b);
+		return f_b;
 }
 std::ostream& operator<<(std::ostream &os, const Fixed &ref)
 {
+	
 	std::cout << (float) (ref.getRawBits()) / (float)(1 << 8);
 	return (os);
 }

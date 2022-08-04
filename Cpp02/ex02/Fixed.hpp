@@ -31,10 +31,10 @@
 			Fixed &operator-- ();
 			Fixed operator-- (int);
 			~Fixed(void);
-			static Fixed &min(Fixed &a, Fixed &b);
-			static Fixed &min(const Fixed &a, const Fixed &b);
-			static Fixed &max(const Fixed &a, const Fixed &b);
-			static Fixed &max(Fixed &a, Fixed &b);
+			static float min(Fixed &a, Fixed &b);
+			static float min(const Fixed &a, const Fixed &b);
+			static float max(const Fixed &a, const Fixed &b);
+			static float max(Fixed &a, Fixed &b);
 			int getRawBits( void ) const;
 			void setRawBits( int const raw );
 	} ;

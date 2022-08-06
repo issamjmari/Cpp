@@ -1,6 +1,6 @@
 SRC = megaphone.cpp
 OBJ = megaphone.opp
-GPP = g++ -std=c++98
+GPP = c++ -std=c++98
 GFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 MEGAPHONE = megaphone

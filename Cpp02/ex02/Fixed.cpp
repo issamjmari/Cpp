@@ -25,13 +25,13 @@ Fixed  &Fixed::operator=(const Fixed &point)
 	this->fixed_num = point.getRawBits();
 	return (*this);
 }
-int  Fixed::operator >(const Fixed &point)
+int  Fixed::operator >(const Fixed &point) const 
 {
 	float first = (float) this->getRawBits() / (float) (1 << 8);
 	float second = (float) point.getRawBits() / (float) (1 << 8);
 	return (first > second);
 }
-int	 Fixed::operator <(const Fixed &point)
+int	 Fixed::operator <(const Fixed &point) const
 {
 	float first = (float) this->getRawBits() / (float) (1 << 8);
 	float second = (float) point.getRawBits() / (float) (1 << 8);

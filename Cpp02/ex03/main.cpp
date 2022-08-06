@@ -1,8 +1,7 @@
 #include "Fixed.hpp"
 #include "Point.hpp"
 
-int main
+int main()
 {
-	Point a;
-	std::cout << a
+	bsp()
 }

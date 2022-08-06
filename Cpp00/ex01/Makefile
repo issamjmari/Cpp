@@ -1,5 +1,5 @@
 SRC = PhoneBook.cpp Contact.cpp main.cpp
-GPP = g++ -std=c++98
+GPP = c++ -std=c++98
 GFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 PHONEBOOK = phonebook

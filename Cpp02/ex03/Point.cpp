@@ -10,7 +10,8 @@ Point::Point(const float f_x, const float f_y) : x(f_x), y(f_y)
 }
 // Point::Point(const Point &ref)
 // {
-// 	(*this) = ref;
+// 	(*this).x = ref.get_x();
+// 	(*this).y = ref.get_y();
 // }
 // Point &Point::operator=(const Point &point)
 // {

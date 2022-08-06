@@ -16,8 +16,8 @@
 			float toFloat( void ) const;
 			int toInt( void ) const;
 			Fixed  &operator=(const Fixed &point);
-			int  operator >(const Fixed &point);
-			int	 operator <(const Fixed &point);
+			int  operator >(const Fixed &point) const;
+			int	 operator <(const Fixed &point) const;
 			int  operator >=(const Fixed &point);
 			int  operator <=(const Fixed &point);
 			int  operator ==(const Fixed &point);

@@ -12,7 +12,7 @@
 			Point(const Point &ref);
 			Fixed get_x() const;
 			Fixed get_y() const;
-			// Point &operator=(const Point &point);
+			Point &operator=(const Point &point);
 			~Point(void);
 	} ;
 #endif

@@ -35,8 +35,8 @@
 			const static Fixed &min(const Fixed &a, const Fixed &b);
 			const static Fixed &max(const Fixed &a, const Fixed &b);
 			static Fixed &max(Fixed &a, Fixed &b);
-			int getRawBits( void ) const;
-			void setRawBits( int const raw );
+			const float getRawBits( void ) const;
+			const void setRawBits( float const raw );
 	} ;
 	std::ostream& operator<<(std::ostream &os, const Fixed &ref);
 #endif

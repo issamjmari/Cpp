@@ -2,7 +2,7 @@
 
 int	check_if_not_digit(std::string phone_num)
 {
-	for(int i = 0; i < phone_num.length(); i++)
+	for(size_t i = 0; i < phone_num.length(); i++)
 	{
 		if (!isdigit(phone_num[i]))
 			return 0;
@@ -25,7 +25,7 @@ void Contact::fill_contact(int index)
 	while (this->last_name.length() == 0)
 	{
 		std::cout << "empty last name not allowed, try again please\n";
-		std::cout << "first name is : ";
+		std::cout << "last name is : ";
 		getline(std::cin, this->last_name);
 	}
 	std::cout << "nickname is : ";
@@ -33,7 +33,7 @@ void Contact::fill_contact(int index)
 	while (this->nickname.length() == 0)
 	{
 		std::cout << "empty nickname not allowed, try again please\n";
-		std::cout << "first name is : ";
+		std::cout << "nickname is : ";
 		getline(std::cin, this->nickname);
 	}
 	std::cout << "phone_number is : ";
@@ -41,7 +41,7 @@ void Contact::fill_contact(int index)
 	while (this->phone_number.length() == 0 || !check_if_not_digit(this->phone_number))
 	{
 		std::cout << "empty phone number and characters not allowed, try again please\n";
-		std::cout << "first name is : ";
+		std::cout << "phone number is : ";
 		getline(std::cin, this->phone_number);
 	}
 	std::cout << "darkest secret is : ";
@@ -49,7 +49,7 @@ void Contact::fill_contact(int index)
 	while (this->darkest_secret.length() == 0)
 	{
 		std::cout << "empty darkest secret not allowed, try again please\n";
-		std::cout << "first name is : ";
+		std::cout << "darkest secrect is : ";
 		getline(std::cin, this->darkest_secret);
 	}
 }

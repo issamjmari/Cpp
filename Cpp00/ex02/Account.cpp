@@ -39,13 +39,13 @@ void	print_time(void)
 Account::Account(int initial_deposit) 
 {
 	print_time();
-	this->_accountIndex = this->_nbAccounts;
+	this->_accountIndex = _nbAccounts;
 	std::cout << "index:" << this->_accountIndex << ";" << "amount:" << initial_deposit << ";" << "created\n";
-	this->_nbAccounts++;
+	_nbAccounts++;
 	this->_nbDeposits = 0;
 	this->_nbWithdrawals = 0;
 	this->_amount = initial_deposit;
-	this->_totalAmount += initial_deposit;
+	_totalAmount += initial_deposit;
 }
 
 

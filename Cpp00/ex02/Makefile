@@ -1,11 +1,12 @@
 SRC = Account.cpp test.cpp
-c++ = c++ -std=c++98
-FLAGS = -Wall -Wextra -Werror
-OUTPUT = out_log.txt
-RM = rm -f
+GPP = c++ -std=c++98
+GFLAGS = -Wall -Wextra -Werror
+RM = rm -rf
+NAME = out_log.txt
 
-all :
-	$(c++) $(FLAGS) $(SRC) -o $(OUTPUT)
-clean :
-	$(RM) (OUTPUT)
-re : clean all
+all : $(NAME)
+$(NAME) : $(SRC)
+	$(GPP) $(GFLAGS)  $(SRC) -o $(NAME)
+fclean :
+	$(RM) $(NAME)
+re : fclean all

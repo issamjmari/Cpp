@@ -3,8 +3,10 @@ GPP = c++ -std=c++98
 GFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 PHONEBOOK = phonebook
-all :
-	$(GPP)  $(SRC) -o $(PHONEBOOK)
-fclean :
+
+all : $(PHONEBOOK)
+$(PHONEBOOK) : $(SRC)
+	$(GPP) $(GFLAGS)  $(SRC) -o $(PHONEBOOK)
+clean :
 	$(RM) $(PHONEBOOK)
 re : fclean all

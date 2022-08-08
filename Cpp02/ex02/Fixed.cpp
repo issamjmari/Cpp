@@ -61,29 +61,33 @@ int  Fixed::operator !=(const Fixed &point)
 	float second = (float) point.getRawBits() / (float) (1 << 8);
 	return (first != second);
 }
-float  Fixed::operator+(const Fixed &point)
+Fixed	&Fixed::operator+(const Fixed &point)
 {
 	float first = (float) this->getRawBits() / (float) (1 << 8);
 	float second = (float) point.getRawBits() / (float) (1 << 8);
-	return (first + second);
+	Fixed temp(first + second);
+	return (temp);
 }
-float  Fixed::operator-(const Fixed &point)
+Fixed	&Fixed::operator-(const Fixed &point)
 {
 	float first = (float) this->getRawBits() / (float) (1 << 8);
 	float second = (float) point.getRawBits() / (float) (1 << 8);
-	return (first - second);
+	Fixed temp(first - second);
+	return (temp);
 }
-float  Fixed::operator*(const Fixed &point)
+Fixed	&Fixed::operator*(const Fixed &point)
 {
 	float first = (float) this->getRawBits() / (float) (1 << 8);
 	float second = (float) point.getRawBits() / (float) (1 << 8);
-	return (first * second);
+	Fixed temp(first * second);
+	return (temp);
 }
-float  Fixed::operator/(const Fixed &point)
+Fixed	&Fixed::operator/(const Fixed &point)
 {
 	float first = (float) this->getRawBits() / (float) (1 << 8);
 	float second = (float) point.getRawBits() / (float) (1 << 8);
-	return (first / second);
+	Fixed temp(first / second);
+	return (temp);
 }
 Fixed	Fixed::operator++ ()
 {

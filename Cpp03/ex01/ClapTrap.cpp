@@ -10,6 +10,14 @@ ClapTrap::ClapTrap(std::string p_Name) : Name(p_Name), hit_points(10), energy_po
 {
 	std::cout << "ClapTrap " << this->Name << " is created\n";
 }
+
+ClapTrap::ClapTrap(std::string p_Name, \
+			unsigned int hit_p, \
+			unsigned int energy_p, \
+			unsigned int attack_d) : hit_points(hit_p), \
+energy_points(energy_p), attack_damage(attack_d), Name(p_Name)
+{
+}
 ClapTrap::ClapTrap(const ClapTrap &ref)
 {
 	std::cout << "Copy Constructor of " << ref.Name << " ClapTrap is created\n";

@@ -13,6 +13,10 @@
 			ClapTrap(void);
 			ClapTrap(std::string Name);
 			ClapTrap(const ClapTrap &ref);
+			ClapTrap(std::string Name, \
+			unsigned int hit_points, \
+			unsigned int energy_points, \
+			unsigned int attack_damage);
 			ClapTrap &operator=(const ClapTrap &ref);
 			~ClapTrap(void);
 			std::string	get_name(void);

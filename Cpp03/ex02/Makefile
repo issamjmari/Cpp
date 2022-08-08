@@ -1,8 +1,8 @@
-SRC = ClapTrap.cpp ScavTrap.cpp main.cpp
+SRC = ClapTrap.cpp ScavTrap.cpp FragTrap.cpp main.cpp
 GPP = c++ -std=c++98
-GFLAGS = -Wall -Wextra -Werror
+GFLAGS = -Wall -Wextra -Werror -fsanitize=address
 RM = rm -rf
-NAME = ScavTrap
+NAME = FragTrap
 
 all : $(NAME)
 $(NAME) : $(SRC)

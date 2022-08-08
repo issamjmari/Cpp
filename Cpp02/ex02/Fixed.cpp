@@ -144,7 +144,6 @@ const Fixed	&Fixed::max(const Fixed &a, const Fixed &b)
 }
 std::ostream& operator<<(std::ostream &os, const Fixed &ref)
 {
-	
 	std::cout << (float) (ref.getRawBits()) / (float)(1 << 8);
 	return (os);
 }

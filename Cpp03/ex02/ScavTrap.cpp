@@ -15,12 +15,14 @@ ScavTrap::ScavTrap(ScavTrap &ref)
 }
 ScavTrap &ScavTrap::operator=(ScavTrap &ref)
 {
+	std::cout << "copy assign was called\n";
 	this->set_attack_damage(ref.get_attack_damage());
 	this->set_energy_points(ref.get_energy_points());
 	this->set_hit_points(ref.get_hit_points());
 	this->set_name(ref.get_name());
 	return (*this);
 }
+
 ScavTrap::~ScavTrap(void)
 {
 	std::cout << "ScavTrap " << this->get_name() << " is destroyed\n";

@@ -6,6 +6,6 @@ int main( void )
 	Fixed b(64.3f);
 	const Fixed c(9);
 	const Fixed d(6.55f);
-	std::cout << Fixed::min(a, b) << "\n";
-	std::cout << Fixed::max(c, d) << "\n";
+	std::cout << a << "\n";
+	std::cout << b << "\n";
 }

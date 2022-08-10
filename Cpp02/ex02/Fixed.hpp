@@ -22,10 +22,10 @@
 			int  operator <=(const Fixed &point);
 			int  operator ==(const Fixed &point);
 			int  operator !=(const Fixed &point);
-			Fixed &operator+(const Fixed &point);
-			Fixed &operator-(const Fixed &point);
-			Fixed &operator*(const Fixed &point);
-			Fixed &operator/(const Fixed &point);
+			Fixed operator+(const Fixed &point);
+			Fixed operator-(const Fixed &point);
+			Fixed operator*(const Fixed &point);
+			Fixed operator/(const Fixed &point);
 			Fixed operator++ ();
 			Fixed operator++ (int);
 			Fixed operator-- ();

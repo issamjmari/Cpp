@@ -11,6 +11,9 @@
 			DiamondTrap(void);
 			DiamondTrap(std::string Name);
 			DiamondTrap(DiamondTrap &ref);
+			unsigned int get_hit_points(void);
+			unsigned int get_energy_points(void);
+			unsigned int get_attack_damage(void);
 			DiamondTrap &operator=(DiamondTrap &ref);
 			~DiamondTrap(void);
 			void whoAmI();

@@ -3,5 +3,5 @@ int main()
 {
 	DiamondTrap diam("Diammy");
 
-	std::cout << diam;
+	diam.whoAmI();
 }

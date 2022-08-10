@@ -68,22 +68,6 @@ unsigned int ClapTrap::get_attack_damage(void)
 	return (this->attack_damage);
 }
 
-void	ClapTrap::set_name(std::string &s)
-{
-	this->Name = s;
-}
-void	ClapTrap::set_hit_points(unsigned int hit_p)
-{
-	this->hit_points = hit_p;
-}
-void	ClapTrap::set_energy_points(unsigned int energy_p)
-{
-	this->energy_points = energy_p;
-}
-void	ClapTrap::set_attack_damage(unsigned int attack_d)
-{
-	this->attack_damage = attack_d;
-}
 std::ostream& operator<<(std::ostream &os, ClapTrap &ref)
 {
 	os << "hit points are : " << ref.get_hit_points() << std::endl \

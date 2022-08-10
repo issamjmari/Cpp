@@ -4,7 +4,7 @@
 	class ScavTrap: virtual public ClapTrap
 	{
 		protected:
-			unsigned int energy_points;
+			int energy_points;
 		public:
 			ScavTrap(void);
 			ScavTrap(std::string Name);

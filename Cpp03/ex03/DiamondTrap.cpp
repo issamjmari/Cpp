@@ -8,6 +8,7 @@ DiamondTrap::DiamondTrap(void)
 }
 DiamondTrap::DiamondTrap(std::string p_Name) : Name(p_Name), ClapTrap(p_Name + "_clap_name")
 {
+	std::cout << ClapTrap::Name << std::endl;
 	hit_points = FragTrap::hit_points;
 	energy_points = ScavTrap::energy_points;
 	attack_damage = FragTrap::attack_damage;
@@ -26,6 +27,19 @@ DiamondTrap &DiamondTrap::operator=(DiamondTrap &ref)
 	return (*this);
 }
 
+unsigned int DiamondTrap::get_hit_points(void)
+{
+	return (this->hit_points);
+}
+unsigned int DiamondTrap::get_energy_points(void)
+{
+	return (this->energy_points);
+}
+unsigned int DiamondTrap::get_attack_damage(void)
+{
+	return (this->attack_damage);
+}
+
 std::ostream& operator<<(std::ostream &os, DiamondTrap &ref)
 {
 	os << "hit points are : " << ref.get_hit_points() << std::endl \
@@ -40,5 +54,5 @@ DiamondTrap::~DiamondTrap(void)
 void DiamondTrap::whoAmI()
 {
 	std::cout << "My name is " << this->Name << " my parent ClapTrap name is \
-" << ClapTrap::get_name() << std::endl;
+" << ClapTrap::Name << std::endl;
 }

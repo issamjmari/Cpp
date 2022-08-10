@@ -49,24 +49,28 @@ int  Fixed::operator !=(const Fixed &point)
 {
 	return (this->getRawBits() != point.getRawBits());
 }
-Fixed	&Fixed::operator+(const Fixed &point)
+Fixed	Fixed::operator+(const Fixed &point)
 {
-	Fixed temp(this->fixed_num + point.getRawBits());
+	Fixed temp;
+	temp.fixed_num = ((this->fixed_num + point.getRawBits()));
 	return (temp);
 }
-Fixed	&Fixed::operator-(const Fixed &point)
+Fixed	Fixed::operator-(const Fixed &point)
 {
-	Fixed temp(this->fixed_num - point.getRawBits());
+	Fixed temp;
+	temp.fixed_num = ((this->fixed_num - point.getRawBits()));
 	return (temp);
 }
-Fixed	&Fixed::operator*(const Fixed &point)
+Fixed	Fixed::operator*(const Fixed &point)
 {
-	Fixed temp(this->fixed_num * point.getRawBits());
+	Fixed temp;
+	temp.fixed_num = ((this->fixed_num * point.getRawBits()) / (1 << 8));
 	return (temp);
 }
-Fixed	&Fixed::operator/(const Fixed &point)
+Fixed	Fixed::operator/(const Fixed &point)
 {
-	Fixed temp(this->fixed_num / point.getRawBits());
+	Fixed temp;
+	temp.fixed_num = ((this->fixed_num / point.getRawBits()));
 	return (temp);
 }
 Fixed	Fixed::operator++ ()
@@ -126,7 +130,7 @@ const Fixed	&Fixed::max(const Fixed &a, const Fixed &b)
 }
 std::ostream& operator<<(std::ostream &os, const Fixed &ref)
 {
-	std::cout << (float) ref.getRawBits() / (float) (1 << 16);
+	std::cout << "it is yaa" << ((float) ref.getRawBits() / (float) (1 << 8));
 	return (os);
 }
 int Fixed::getRawBits( void ) const

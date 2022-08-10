@@ -3,7 +3,6 @@
 
 FragTrap::FragTrap(void)
 {
-	this->Name = "";
 	this->hit_points = 100;
 	this->energy_points = 100;
 	this->attack_damage = 30;
@@ -29,10 +28,10 @@ void FragTrap::highFivesGuys(void)
 FragTrap &FragTrap::operator=(FragTrap &ref)
 {
 	std::cout << "copy assign was called\n";
-	this->set_attack_damage(ref.get_attack_damage());
-	this->set_energy_points(ref.get_energy_points());
-	this->set_hit_points(ref.get_hit_points());
-	this->set_name(ref.get_name());
+	attack_damage = ref.get_attack_damage();
+	energy_points = ref.get_energy_points();
+	hit_points = ref.get_hit_points();
+	Name = ref.get_name();
 	return (*this);
 }
 FragTrap::~FragTrap(void)

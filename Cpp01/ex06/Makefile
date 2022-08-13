@@ -2,8 +2,9 @@ SRC = Harl.cpp main.cpp
 GPP = c++ -std=c++98
 GFLAGS = -Wall -Wextra -Werror
 RM = rm -f
-HARL = Harl
+HARL = harlFilter
 all :
 	$(GPP) $(GFLAGS) $(SRC) -o $(HARL)
-fclean :
+clean :
 	$(RM) $(HARL)
+re : clean all

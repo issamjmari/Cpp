@@ -1,6 +1,5 @@
 #ifndef HUMAN_B_HPP
 #define HUMAN_B_HPP
-	#include <string>
 	#include "Weapon.hpp"
 	#include <iostream>
 	class HumanB
@@ -11,7 +10,6 @@
 		public:
 			void	attack(void);
 			HumanB(std::string);
-			// ~HumanB(void);
 			void setWeapon(Weapon &weapon);
 	} ; 
 #endif

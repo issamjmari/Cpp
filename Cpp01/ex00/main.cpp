@@ -3,7 +3,7 @@
 int main(void)
 {
 	Zombie *first = newZombie("zombaa");
-	std::cout << first->get_name() << std::endl;
+	first->announce();
 	delete first;
 	randomChump("zombra");
 }

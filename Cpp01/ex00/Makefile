@@ -3,7 +3,9 @@ GPP = c++ -std=c++98
 GFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 Zombie = zombie
-all :
+all : $(Zombie)
+$(Zombie) : $(SRC)
 	$(GPP) $(GFLAGS) $(SRC) -o $(Zombie)
-fclean :
+clean :
 	$(RM) $(Zombie)
+re : fclean all

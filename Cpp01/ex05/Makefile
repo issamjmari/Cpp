@@ -5,5 +5,6 @@ RM = rm -f
 HARL = Harl
 all :
 	$(GPP) $(GFLAGS) $(SRC) -o $(HARL)
-fclean :
+clean :
 	$(RM) $(HARL)
+re : clean all

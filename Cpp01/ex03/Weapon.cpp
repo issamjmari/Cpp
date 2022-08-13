@@ -9,10 +9,6 @@ void		Weapon::setType(std::string type)
 	this->type = type;
 }
 
-Weapon::Weapon(void)
-{
-}
-
 Weapon::Weapon(std::string s)
 {
 	setType(s);

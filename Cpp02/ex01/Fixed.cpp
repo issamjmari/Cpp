@@ -22,10 +22,14 @@ int		Fixed::getRawBits(void) const
 	return (this->fixed_num);
 }
 
+void	Fixed::setRawBits( int const raw )
+{
+	this->fixed_num = raw;
+}
 Fixed::Fixed(const Fixed &ref)
 {
 	std::cout << "Copy constructor called\n";
-	*this = ref;
+	this->fixed_num = ref.getRawBits();
 }
 
 Fixed& Fixed::operator=(const Fixed &point)
@@ -40,9 +44,14 @@ int Fixed::toInt( void ) const
 	return (roundf(this->fixed_num / (1 << fract_bits)));
 }
 
+float Fixed::toFloat( void ) const
+{
+	return ((float) ((float) this->fixed_num / (float) (1 << fract_bits)));
+}
+
 std::ostream& operator<<(std::ostream &os, const Fixed &ref)
 {
-	std::cout << (float) (ref.getRawBits()) / (float)(1 << 8);
+	std::cout << ref.toFloat();
 	return (os);
 }
 

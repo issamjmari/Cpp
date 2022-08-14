@@ -1,6 +1,6 @@
 #include "Fixed.hpp"
 
-const int Fixed::fract_bits = 8;
+const int Fixed::fract_bits;
 Fixed::Fixed(void) : fixed_num(0)
 {
 	std::cout << "Default constructor called\n";
@@ -13,13 +13,13 @@ int		Fixed::getRawBits(void) const
 }
 void	Fixed::setRawBits(int const raw)
 {
-	fixed_num = raw;
+	this->fixed_num = raw;
 }
 
 Fixed::Fixed(const Fixed &ref)
 {
 	std::cout << "Copy constructor called\n";
-	*this = ref;
+	this->fixed_num = ref.getRawBits();
 }
 
 Fixed& Fixed::operator=(const Fixed &point)

@@ -1,9 +1,18 @@
 SRC = Fixed.cpp main.cpp
-GPP = c++ -std=c++98
-GFLAGS = -Wall -Wextra -Werror
-RM = rm -f
+OBJ = $(SRC:.cpp=.o)
+CC = c++ -std=c++98
+CFLAGS = -Wall -Wextra -Werror
+LIB = Fixed.a
 NAME = Fixed
-all :
-	$(GPP) $(GFLAGS) $(SRC) -o $(NAME)
-fclean :
+RM = rm -f
+
+all : $(NAME)
+
+$(NAME) : $(OBJ)
+	ar rcs $(LIB) $(OBJ)
+	$(CC) $(LIB) $(CFLAGS) -o $(NAME)
+clean :
+	$(RM) $(OBJ) $(LIB)
+fclean : clean
 	$(RM) $(NAME)
+re : fclean all bonus

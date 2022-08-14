@@ -1,9 +1,14 @@
 #include <iostream>
 #include "Fixed.hpp"
-int main( void ) 
-{
-	Fixed a(4.5f);
-	Fixed b(3.5f);
-	std::cout << (a / b) << "\n";
-	std::cout << b << "\n";
+int main( void ) {
+Fixed a;
+Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+std::cout << a << std::endl;
+std::cout << ++a << std::endl;
+std::cout << a << std::endl;
+std::cout << a++ << std::endl;
+std::cout << a << std::endl;
+std::cout << b << std::endl;
+std::cout << Fixed::max( a, b ) << std::endl;
+return 0;
 }

@@ -22,10 +22,10 @@
 			int  operator <=(const Fixed &point);
 			int  operator ==(const Fixed &point);
 			int  operator !=(const Fixed &point);
-			float  operator+(const Fixed &point);
-			float  operator-(const Fixed &point);
-			float  operator*(const Fixed &point);
-			float  operator/(const Fixed &point);
+			Fixed operator+(const Fixed &point);
+			Fixed operator-(const Fixed &point);
+			Fixed operator*(const Fixed &point);
+			Fixed operator/(const Fixed &point);
 			Fixed operator++ ();
 			Fixed operator++ (int);
 			Fixed operator-- ();
@@ -35,8 +35,8 @@
 			const static Fixed &min(const Fixed &a, const Fixed &b);
 			const static Fixed &max(const Fixed &a, const Fixed &b);
 			static Fixed &max(Fixed &a, Fixed &b);
-			const float getRawBits( void ) const;
-			const void setRawBits( float const raw );
+			int getRawBits( void ) const;
+			void setRawBits( int const raw );
 	} ;
 	std::ostream& operator<<(std::ostream &os, const Fixed &ref);
 #endif

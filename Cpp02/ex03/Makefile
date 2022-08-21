@@ -1,4 +1,4 @@
-SRC = Fixed.cpp bsp.cpp Point.cpp
+SRC = Fixed.cpp bsp.cpp Point.cpp main.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++ -std=c++98
 CFLAGS = -Wall -Wextra -Werror
@@ -15,4 +15,4 @@ clean :
 	$(RM) $(OBJ) $(LIB)
 fclean : clean
 	$(RM) $(NAME)
-re : fclean all bonus
+re : fclean all

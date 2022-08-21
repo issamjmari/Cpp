@@ -3,8 +3,6 @@
 	#include "ClapTrap.hpp"
 	class ScavTrap: virtual public ClapTrap
 	{
-		protected:
-			int energy_points;
 		public:
 			ScavTrap(void);
 			ScavTrap(std::string Name);

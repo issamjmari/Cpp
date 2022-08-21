@@ -3,18 +3,17 @@
 ScavTrap::ScavTrap(void)
 {
 	this->hit_points = 100;
-	energy_points = 50;
+	this->energy_points = 50;
 	this->attack_damage = 20;
 	std::cout << "ScavTrap is called\n";
 }
 ScavTrap::ScavTrap(std::string p_Name)
 {
+	std::cout << "ScavTrap " << p_Name << " is created\n";
 	this->Name = p_Name;
 	this->hit_points = 100;
-	energy_points = 50;
-	std::cout << energy_points << std::endl;
+	this->energy_points = 50;
 	this->attack_damage = 20;
-	std::cout << "ScavTrap " << Name << " is created\n";
 }
 ScavTrap::ScavTrap(ScavTrap &ref)
 {
@@ -23,14 +22,12 @@ ScavTrap::ScavTrap(ScavTrap &ref)
 }
 ScavTrap &ScavTrap::operator=(ScavTrap &ref)
 {
-	std::cout << "copy assign was called\n";
-	attack_damage = ref.get_attack_damage();
-	energy_points = ref.get_energy_points();
-	hit_points = ref.get_hit_points();
-	Name = ref.get_name();
+	this->Name = ref.Name;
+	this->hit_points = ref.hit_points;
+	this->energy_points = ref.energy_points;
+	this->attack_damage = ref.attack_damage;
 	return (*this);
 }
-
 ScavTrap::~ScavTrap(void)
 {
 	std::cout << "ScavTrap " << this->get_name() << " is destroyed\n";
@@ -41,6 +38,7 @@ void ScavTrap::attack(const std::string& target)
 	{
 		std::cout << "ScavTrap " << this->get_name() << " attacks "  \
 	<< target << ", causing " << this->get_attack_damage() << " points of damage\n";
+		ScavTrap::energy_points--;
 	}
 	else
 		std::cout << "ScavTrap " << this->get_name() << " Can not attack due to \

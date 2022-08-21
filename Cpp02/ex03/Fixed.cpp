@@ -16,6 +16,7 @@ Fixed::Fixed(const float float_num)
 }
 Fixed::Fixed(const Fixed &ref)
 {
+	// std::cout << "COPY\n";
 	this->fixed_num = ref.getRawBits();
 }
 int Fixed::toInt( void ) const
@@ -81,7 +82,7 @@ Fixed	Fixed::operator/(const Fixed &point)
 }
 Fixed	Fixed::operator++ ()
 {
-	this->fixed_num += 0.00390625 * (1 << 8);
+	this->fixed_num += (0.00390625 * (1 << 8));
 	return (*this);
 }
 Fixed	Fixed::operator++ (int stuff)
@@ -89,12 +90,12 @@ Fixed	Fixed::operator++ (int stuff)
 	(void) stuff;
 	Fixed temp;
 	temp = *this;
-	(*this).fixed_num += 0.00390625 * (1 << 8);
+	(*this).fixed_num += (0.00390625 * (1 << 8));
 	return temp;
 }
 Fixed	Fixed::operator-- ()
 {
-	this->fixed_num -= 0.00390625 * (1 << 8);
+	this->fixed_num -= (0.00390625 * (1 << 8));
 	return (*this);
 }
 Fixed	Fixed::operator-- (int stuff)
@@ -102,7 +103,7 @@ Fixed	Fixed::operator-- (int stuff)
 	(void) stuff;
 	Fixed temp;
 	temp = *this;
-	(*this).fixed_num -= 0.00390625 * (1 << 8);
+	(*this).fixed_num -= (0.00390625 * (1 << 8));
 	return temp;
 }
 

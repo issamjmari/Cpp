@@ -1,12 +1,14 @@
-SRC = megaphone.cpp
+SRC = $(wildcard *.c)
+OBJ = $(wildcard *.o)
 GPP = c++ -std=c++98
 GFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 NAME = megaphone
 
-all : $(NAME)
-$(NAME) : $(SRC)
-	$(GPP) $(GFLAGS)  $(SRC) -o $(NAME)
-clean :
-	$(RM) $(NAME)
-re : fclean all
+all: $(NAME)
+
+%.o: %.cpp
+	$(GPP) $(GFLAGS) -c $?
+
+$(NAME): $(OBJ)
+	$(GPP) $(OBJ) -o $(NAME)

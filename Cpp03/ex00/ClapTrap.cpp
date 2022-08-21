@@ -28,7 +28,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &ref)
 }
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "Constructor of ClapTrap is destroyed\n";
+	std::cout << "ClapTrap " << this->Name << " is destroyed\n";
 }
 void ClapTrap::attack(const std::string& target)
 {
@@ -60,15 +60,18 @@ unsigned int ClapTrap::get_attack_damage(void)
 }
 std::ostream& operator<<(std::ostream &os, ClapTrap &ref)
 {
+	std::cout << "*************************************************************************\n";
+	std::cout << ref.get_name() << " DATA ARE\n";
 	os << "hit points are : " << ref.get_hit_points() << std::endl \
 << "energy points are : " << ref.get_energy_points() << std::endl \
 << "attack damage is : " << ref.get_attack_damage() << std::endl;
+	std::cout << "*************************************************************************\n";
 	return (os);
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << "ClapTrap " << this->Name << " Took " << amount << " of damage\n";
+	std::cout << "ClapTrap " << this->Name << " Took " << amount << " points of damage\n";
 	this->hit_points -= amount;
 	this->attack_damage += amount;
 }

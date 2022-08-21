@@ -1,12 +1,20 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(void) : ClapTrap("", 100, 50, 20)
+ScavTrap::ScavTrap(void)
 {
+	this->Name = "";
+	this->hit_points = 100;
+	this->energy_points = 50;
+	this->attack_damage = 20;
 	std::cout << "ScavTrap is called\n";
 }
-ScavTrap::ScavTrap(std::string Name) : ClapTrap(Name, 100, 50, 20)
+ScavTrap::ScavTrap(std::string p_Name)
 {
-	std::cout << "ScavTrap " << Name << " is created\n";
+	std::cout << "ScavTrap " << p_Name << " is created\n";
+	this->Name = p_Name;
+	this->hit_points = 100;
+	this->energy_points = 50;
+	this->attack_damage = 20;
 }
 ScavTrap::ScavTrap(ScavTrap &ref)
 {
@@ -15,10 +23,10 @@ ScavTrap::ScavTrap(ScavTrap &ref)
 }
 ScavTrap &ScavTrap::operator=(ScavTrap &ref)
 {
-	this->set_attack_damage(ref.get_attack_damage());
-	this->set_energy_points(ref.get_energy_points());
-	this->set_hit_points(ref.get_hit_points());
-	this->set_name(ref.get_name());
+	this->Name = ref.Name;
+	this->hit_points = ref.hit_points;
+	this->energy_points = ref.energy_points;
+	this->attack_damage = ref.attack_damage;
 	return (*this);
 }
 ScavTrap::~ScavTrap(void)
@@ -31,6 +39,7 @@ void ScavTrap::attack(const std::string& target)
 	{
 		std::cout << "ScavTrap " << this->get_name() << " attacks "  \
 	<< target << ", causing " << this->get_attack_damage() << " points of damage\n";
+		this->energy_points--;
 	}
 	else
 		std::cout << "ScavTrap " << this->get_name() << " Can not attack due to \
@@ -39,5 +48,5 @@ the lack of energy points\n";
 
 void ScavTrap::guardGate()
 {
-	std::cout << "ScavTrap is now in goalkeeper mode\n";
+	std::cout << "ScavTrap " << this->Name << " is now in goalkeeper mode\n";
 }

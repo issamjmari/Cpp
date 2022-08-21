@@ -1,12 +1,18 @@
 SRC = ClapTrap.cpp ScavTrap.cpp main.cpp
+OBJ = $(SRC:.cpp=.o)
 GPP = c++ -std=c++98
 GFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 NAME = ScavTrap
 
-all : $(NAME)
-$(NAME) : $(SRC)
-	$(GPP) $(GFLAGS) $(SRC) -o $(NAME)
-fclean :
+all: $(NAME)
+$(NAME): $(OBJ)
+	$(GPP) $(OBJ) -o $(NAME)
+%.o: %.cpp
+	$(GPP) $(GFLAGS) -c $?
+clean:
+	$(RM) $(OBJ)
+fclean : clean
 	$(RM) $(NAME)
 re : fclean all
+.PHONY = all clean fclean re

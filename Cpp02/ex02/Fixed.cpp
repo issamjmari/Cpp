@@ -7,7 +7,7 @@ Fixed::Fixed(void) : fixed_num(0)
 Fixed::~Fixed(void){};
 Fixed::Fixed(const int int_num)
 {
-	this->fixed_num = roundf(int_num * (1 << fract_bits));
+	this->fixed_num = int_num * (1 << fract_bits);
 }
 
 Fixed::Fixed(const float float_num)

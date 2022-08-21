@@ -2,21 +2,25 @@
 
 DiamondTrap::DiamondTrap(void)
 {
-	hit_points = FragTrap::hit_points;
-	energy_points = ScavTrap::energy_points;
-	attack_damage = FragTrap::attack_damage;
+	set_hit_points(100);
+	set_energy_points(50);
+	set_attack_damage(30);
 }
-DiamondTrap::DiamondTrap(std::string p_Name) : Name(p_Name), ClapTrap(p_Name + "_clap_name")
+DiamondTrap::DiamondTrap(std::string p_Name) : ClapTrap(p_Name + "_clap_name"), Name(p_Name)
 {
-	std::cout << ClapTrap::Name << std::endl;
-	hit_points = FragTrap::hit_points;
-	energy_points = ScavTrap::energy_points;
-	attack_damage = FragTrap::attack_damage;
+	std::cout << "Diamond " << this->Name << " is created\n";
+	set_name(p_Name);
+	set_hit_points(100);
+	set_energy_points(50);
+	set_attack_damage(30);
 }
 DiamondTrap::DiamondTrap(DiamondTrap &ref)
 {
-	std::cout << "Copy Constructor of " << ref.get_name() << " DiamondTrap is created\n";
-	(*this) = ref;
+	std::cout << "Copy Constructor of " << ref.get_name() << " DiamondTrap is called\n";
+	this->hit_points = ref.hit_points;
+	this->energy_points = ref.energy_points;
+	this->attack_damage = ref.attack_damage;
+	this->Name = ref.Name;
 }
 DiamondTrap &DiamondTrap::operator=(DiamondTrap &ref)
 {
@@ -49,7 +53,7 @@ std::ostream& operator<<(std::ostream &os, DiamondTrap &ref)
 }
 DiamondTrap::~DiamondTrap(void)
 {
-	std::cout << "Diamond is destroyed\n";
+	std::cout << "Diamond " << this->Name << " is destroyed\n";
 }
 void DiamondTrap::whoAmI()
 {

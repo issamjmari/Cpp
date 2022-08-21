@@ -15,8 +15,7 @@ Point::Point(const float f_x, const float f_y) : x(f_x), y(f_y)
 // }
 // Point &Point::operator=(const Point &point)
 // {
-// 	(*this).x = point.get_x();
-// 	(*this).y = point.get_y();
+// 	(*this) = point
 // 	return (*this);
 // }
 Fixed Point::get_x(void) const

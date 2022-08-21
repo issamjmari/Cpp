@@ -1,18 +1,15 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int main()
 {
 	try
 	{
-		Bureaucrat bur(6, "bur");
-		Form form("Formy", 19, 19);
-		
-		std::cout << bur;
-		std::cout << form;
-		bur.signForm(form);
-		form.beSigned(bur);
-		bur.signForm(form);
+		Bureaucrat Bur(80, "burA");
+		RobotomyRequestForm a("Ali");
+		a.execute(Bur);
 	}
 	catch (std::exception &e)
 	{

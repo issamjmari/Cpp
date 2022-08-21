@@ -1,5 +1,4 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
 Bureaucrat::Bureaucrat(void)
 {
 	std::cout << "A bureaucrat is created\n";
@@ -65,4 +64,10 @@ std::ostream& operator<<(std::ostream &os, const Bureaucrat &ref)
 {
 	std::cout << ref.getName() << ", bireaucrat grade " << ref.getGrade() << ".\n";
 	return os;
+}
+
+void Bureaucrat::executeForm(Form const & form)
+{
+	if(form.execute(*this))
+		std::cout << this->getName() << " executed " << form.get_Name();
 }

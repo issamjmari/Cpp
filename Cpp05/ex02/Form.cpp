@@ -1,5 +1,4 @@
 #include "Form.hpp"
-#include "Bureaucrat.hpp"
 
 const std::string Form::get_Name(void) const
 {
@@ -18,22 +17,22 @@ const int	Form::get_grade_exec(void) const
 	return (this->grade_exec);
 }
 
-void		Form::set_Name(const std::string s)
-{
-	this->Name = s;
-}
-void		Form::set_v_signed(bool _sign)
-{
-	this->v_signed = _sign;
-}
-void		Form::set_grade_sign(const int g_sign)
-{
-	this->grade_sign = g_sign;
-}
-void		Form::set_grade_exec(const int g_exec)
-{
-	this->grade_exec = g_exec;
-}
+// void		Form::set_Name(const std::string s)
+// {
+// 	this->Name = s;
+// }
+// void		Form::set_v_signed(bool _sign)
+// {
+// 	this->v_signed = _sign;
+// }
+// void		Form::set_grade_sign(const int g_sign)
+// {
+// 	this->grade_sign = g_sign;
+// }
+// void		Form::set_grade_exec(const int g_exec)
+// {
+// 	this->grade_exec = g_exec;
+// }
 Form::Form(const std::string p_Name, const int grade_s, const int grade_ex) : Name(p_Name), v_signed(0) , grade_sign(grade_s),\
 grade_exec(grade_ex)
 {
@@ -49,10 +48,7 @@ Form::Form(void) : Name(""), v_signed(0), grade_sign(1), grade_exec(1)
 Form::Form(const Form &ref)  : v_signed(0) , grade_sign(ref.grade_sign), grade_exec(ref.grade_exec)
 {
 }
-const Form Form::operator=(const Form &ref)
-{
-	return (Form(ref.Name, ref.grade_sign, ref.grade_exec));
-}
+
 void	Form::beSigned(Bureaucrat &Bur)
 {
 	if(Bur.getGrade() <= this->grade_sign)

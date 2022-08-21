@@ -4,15 +4,16 @@
 	#include <iostream>
 	#include "GradeTooLowException.hpp"
 	#include "GradeTooHighException.hpp"
+	#include "Form.hpp"
 	class Form;
 	class Bureaucrat
 	{
 		private:
 			const std::string Name;
 			int					Grade;
+		public:
 			GradeTooHighException High_mem;
 			GradeTooLowException Low_mem;
-		public:
 			Bureaucrat(void);
 			Bureaucrat(int, const std::string);
 			Bureaucrat(const Bureaucrat &);

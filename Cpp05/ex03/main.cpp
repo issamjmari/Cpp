@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include "Form.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
@@ -7,9 +8,11 @@ int main()
 {
 	try
 	{
-		Bureaucrat Bur(30, "burA");
-		ShrubberyCreationForm a("shrubby");
-		Bur.executeForm(a);
+		Intern someRandomIntern;
+		
+		Form* rrf;
+		rrf = someRandomIntern.makeForm("presidential pardon", "Zilavo propska");
+		delete rrf;
 	}
 	catch (std::exception &e)
 	{

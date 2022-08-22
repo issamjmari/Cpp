@@ -7,7 +7,7 @@
 	class Bureaucrat;
 	class Form
 	{
-		private:
+		protected:
 			const std::string Name;
 			bool			  v_signed;
 			const 	int			grade_sign;
@@ -24,7 +24,7 @@
 			Form(const Form &ref);
 			virtual void execute(Bureaucrat const & executor) const = 0;
 			// const Form operator=(const Form &);
-			~Form(void);
+			virtual ~Form(void);
 			void	beSigned(Bureaucrat &ref);
 	} ;
 	std::ostream& operator<<(std::ostream &os, const Form &ref);

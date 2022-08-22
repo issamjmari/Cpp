@@ -1,5 +1,6 @@
 SRC = Bureaucrat.cpp Form.cpp GradeTooLowException.cpp GradeTooHighException.cpp \
-PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp main.cpp
+PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp main.cpp \
+Intern.cpp
 OBJ = $(SRC:.cpp=.o)
 GPP = c++ -std=c++98
 GFLAGS = -Wall -Wextra -Werror

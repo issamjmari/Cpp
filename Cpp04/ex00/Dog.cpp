@@ -8,7 +8,7 @@ Dog::Dog(void)
 Dog::Dog(const Dog &ref)
 {
 	std::cout << "Dog copy was called\n";
-	(*this) = ref;
+	this->type = ref.type;
 }
 
 const std::string &Dog::getType(void) const

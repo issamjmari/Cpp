@@ -3,6 +3,7 @@
 #include "Cat.hpp"
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
+
 int main()
 {
 	const Animal* meta = new Animal();
@@ -10,6 +11,7 @@ int main()
 	const Animal* i = new Cat();
 	const WrongAnimal* testWronganimal = new WrongAnimal();
 	const WrongAnimal* testcat = new WrongCat();
+
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
 	std::cout << testWronganimal->getType() << " " << std::endl;
@@ -18,5 +20,10 @@ int main()
 	j->makeSound();
 	meta->makeSound();
 	testcat->makeSound();
+	delete meta;
+	delete j;
+	delete i;
+	delete testWronganimal;
+	delete testcat;
 	return 0;
 }

@@ -8,7 +8,7 @@ Cat::Cat(void)
 Cat::Cat(const Cat &ref)
 {
 	std::cout << "Cat copy was called\n";
-	(*this) = ref;
+	this->type = ref.type;
 }
 const std::string &Cat::getType(void) const
 {

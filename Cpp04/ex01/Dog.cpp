@@ -8,8 +8,10 @@ Dog::Dog(void)
 }
 Dog::Dog(const Dog &ref)
 {
-	std::cout << "Dog copy was called\n";
-	(*this) = ref;
+	std::cout << "Dog copy constructor was called\n";
+	this->type = ref.type;
+	dog_ideas = new Brain();
+    *(this->dog_ideas) = *(ref.dog_ideas);
 }
 
 const std::string &Dog::getType(void) const
@@ -25,7 +27,11 @@ Dog::~Dog(void)
 const Dog &Dog::operator=(const Dog &ref)
 {
 	std::cout << "Dog copy assignment was called\n";
-	this->type = ref.type;
+    if (dog_ideas != NULL)
+        delete dog_ideas;
+    this->type = ref.type;
+	dog_ideas = new Brain();
+    *(this->dog_ideas) = *(ref.dog_ideas);
 	return (*this);
 }
 void Dog::makeSound(void) const

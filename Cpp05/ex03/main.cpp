@@ -11,8 +11,9 @@ int main()
 		Intern someRandomIntern;
 		
 		Form* rrf;
-		rrf = someRandomIntern.makeForm("presidential pardon", "Zilavo propska");
-		delete rrf;
+		rrf = someRandomIntern.makeForm("jhqwdqwd", "Zilavo propska");
+		if(rrf != NULL)
+			delete rrf;
 	}
 	catch (std::exception &e)
 	{

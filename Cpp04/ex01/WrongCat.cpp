@@ -7,7 +7,7 @@ WrongCat::WrongCat(void)
 WrongCat::WrongCat(const WrongCat &ref)
 {
 	std::cout << "WrongCat copy was called\n";
-	(*this) = ref;
+	this->type = ref.type;
 }
 
 WrongCat::~WrongCat(void)

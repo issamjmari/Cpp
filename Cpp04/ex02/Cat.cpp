@@ -8,8 +8,10 @@ Cat::Cat(void)
 }
 Cat::Cat(const Cat &ref)
 {
-	std::cout << "Cat copy was called\n";
-	(*this) = ref;
+	std::cout << "Cat copy constructor was called\n";
+	this->type = ref.type;
+	cat_ideas = new Brain();
+    *(this->cat_ideas) = *(ref.cat_ideas);
 }
 const std::string &Cat::getType(void) const
 {
@@ -23,7 +25,11 @@ Cat::~Cat(void)
 const Cat &Cat::operator=(const Cat &ref)
 {
 	std::cout << "Cat copy assignment was called\n";
-	this->type = ref.type;
+	if (cat_ideas != NULL)
+        delete cat_ideas;
+    this->type = ref.type;
+	cat_ideas = new Brain();
+    *(this->cat_ideas) = *(ref.cat_ideas);
 	return (*this);
 }
 void Cat::makeSound(void) const

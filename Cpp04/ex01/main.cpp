@@ -3,11 +3,16 @@
 #include "Cat.hpp"
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
-void f()
+int main()
 {
-	const Animal *animals[13];
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
+	
+	delete j; //should not create a leak
+	delete i;
+	const Animal *animals[12];
 	int loop = 0;
-	while (loop < 13)
+	while (loop < 12)
 	{
 		if(loop < 6)
 			animals[loop] = new Cat();
@@ -16,14 +21,9 @@ void f()
 		loop++;
 	}
 	loop = 0;
-	while (loop < 13)
+	while (loop < 12)
 	{
 		delete animals[loop];
 		loop++;
 	}
-}
-int main()
-{
-	f();
-	system("leaks a.out");
 }

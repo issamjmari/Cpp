@@ -8,7 +8,7 @@ WrongAnimal::WrongAnimal(void)
 WrongAnimal::WrongAnimal(const WrongAnimal &ref)
 {
 	std::cout << "WrongAnimal copy was called\n";
-	(*this) = ref;
+	this->type = ref.type;
 }
 
 const std::string &WrongAnimal::getType(void) const

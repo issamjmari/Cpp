@@ -9,6 +9,11 @@ Form *Intern::makeForm(std::string form, std::string target)
 	PresidentialPardonForm *p_form = new PresidentialPardonForm(target);
 	Form *form_arr[3] = {s_form, r_form, p_form};
 	int index = ((form == arr[0]) * 0) + ((form == arr[1]) * 1) + ((form == arr[2]) * 2);
+	if(index == 0 && (form != arr[0]))
+	{
+		std::cout << "Invalid form request\n";
+		return (NULL);
+	}
 	for (int i = 0; i < 3; i++)
 	{
 		if(i != index)

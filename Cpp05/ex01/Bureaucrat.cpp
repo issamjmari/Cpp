@@ -48,7 +48,7 @@ void	Bureaucrat::signForm(Form &form)
 	if(form.get_v_signed())
 		std::cout << this->Name << " signed " << form.get_Name() << std::endl;
 	else if(form.get_grade_sign() > this->Grade && !form.get_v_signed())
-		std::cout << this->Name << " couldn't sign " << form.get_Name() << " because he didn't ask for a sign yet\n";
+		std::cout << this->Name << " couldn't sign " << form.get_Name() << " because he didn't request a sign yet\n";
 	else
 		std::cout << this->Name << " couldn't sign " << form.get_Name() << " because Bureaucrat grade is too low\n";
 }

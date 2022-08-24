@@ -13,6 +13,9 @@ int main()
 		bur.signForm(form);
 		form.beSigned(bur);
 		bur.signForm(form);
+		std::cout << bur;
+		std::cout << form;
+
 	}
 	catch (std::exception &e)
 	{

@@ -7,8 +7,9 @@ RM = rm -rf
 NAME = base_form
 
 all: $(NAME)
-	$(NAME): $(OBJ)
-$(GPP) $(OBJ) -o $(NAME)
+
+$(NAME): $(OBJ)
+	$(GPP) $(OBJ) -o $(NAME)
 %.o: %.cpp
 	$(GPP) $(GFLAGS) -c $?
 clean:

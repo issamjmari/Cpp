@@ -7,6 +7,7 @@
 	{
 		public:
 			ShrubberyCreationForm(void);
+			ShrubberyCreationForm(const ShrubberyCreationForm &);
 			ShrubberyCreationForm(const std::string target);
 			void execute(Bureaucrat const & executor) const;
 			~ShrubberyCreationForm(void);

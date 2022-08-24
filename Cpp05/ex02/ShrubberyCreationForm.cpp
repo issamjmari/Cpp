@@ -31,11 +31,10 @@ void	Tree_build(std::string target)
                 "          ~~~w/w~\"~~,\\` `:/,-(~`\"~~~~~~~~\"~o~\\~/~w|/~\n"
                 "          ~~~~~~~~~~~~~~~~~~~~~~~\\W~~~~~~~~~~~~\\|/~~\n";
 	out_file.open(target + rep, std::ios::out);
-    out_file << tree;
+  out_file << tree;
 }
 ShrubberyCreationForm::ShrubberyCreationForm(void)
 {
-
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : Form(target, 145, 137)
@@ -43,6 +42,10 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : Form(ta
 
 }
 
+// ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &ref)
+// {
+
+// }
 ShrubberyCreationForm::~ShrubberyCreationForm(void)
 {
 }
@@ -51,11 +54,11 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	if(executor.getGrade() <= this->get_grade_sign()
 	&& executor.getGrade() <= this->get_grade_sign())
-    {
-		Tree_build(get_Name());
-    }
-    else
-    {
-		throw Low_mem;
-    }
+  {
+    Tree_build(get_Name());
+  }
+  else
+  {
+    throw Low_mem;
+  }
 }

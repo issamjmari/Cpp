@@ -4,7 +4,6 @@ void	robotomize_it(std::string target)
 {
 	srand(time(0));
 	int ra = 1 + (rand() % 100);
-	std::cout << ra << "\n";
 	std::cout << "drrrrrr ... drrrrrr\n";
 	std::cout << "drrrrrr ... drrrrrr\n";
 	std::cout << "drrrrrr ... drrrrrr\n";

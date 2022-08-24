@@ -1,8 +1,7 @@
 #include "Intern.hpp"
 
-Form *Intern::makeForm(std::string form, std::string target)
+Form *Intern::makeForm(const std::string form, const std::string target)
 {
-	std::cout << "Intern creates " << form << std::endl;
 	std::string arr[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 	ShrubberyCreationForm *s_form = new ShrubberyCreationForm(target);
 	RobotomyRequestForm *r_form = new RobotomyRequestForm(target);
@@ -12,8 +11,11 @@ Form *Intern::makeForm(std::string form, std::string target)
 	if(index == 0 && (form != arr[0]))
 	{
 		std::cout << "Invalid form request\n";
+		for (int i = 0; i < 3; i++)
+				delete form_arr[i];
 		return (NULL);
 	}
+	std::cout << "Intern creates " << form << std::endl;
 	for (int i = 0; i < 3; i++)
 	{
 		if(i != index)

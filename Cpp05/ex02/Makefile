@@ -7,6 +7,7 @@ RM = rm -rf
 NAME = multi_form
 
 all: $(NAME)
+
 $(NAME): $(OBJ)
 	$(GPP) $(OBJ) -o $(NAME)
 %.o: %.cpp

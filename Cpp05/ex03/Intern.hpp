@@ -9,6 +9,6 @@
 	class Intern : public Bureaucrat 
 	{
 		public:
-			Form *makeForm(std::string, std::string);
+			Form *makeForm(const std::string, const std::string);
 	} ;
 #endif

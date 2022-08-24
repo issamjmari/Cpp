@@ -9,11 +9,11 @@ bool		Form::get_v_signed(void) const
 {
 	return (this->v_signed);
 }
-const int	Form::get_grade_sign(void) const
+int	Form::get_grade_sign(void) const
 {
 	return (this->grade_sign);
 }
-const int	Form::get_grade_exec(void) const
+int	Form::get_grade_exec(void) const
 {
 	return (this->grade_exec);
 }
@@ -45,7 +45,11 @@ void	Form::beSigned(Bureaucrat &Bur)
 }
 std::ostream& operator<<(std::ostream &os, const Form &ref)
 {
-	std::cout << "Form " << ref.get_Name() << " has sign grade " << ref.get_grade_sign() <<\
+	if(ref.get_v_signed())
+	std::cout << "Form " << ref.get_Name() << " is signed and it" << " has sign grade " << ref.get_grade_sign() <<\
+" and execution grade " << ref.get_grade_exec() << std::endl;
+	else
+	std::cout << "Form " << ref.get_Name() << "is not signed and it " << " has sign grade " << ref.get_grade_sign() <<\
 " and execution grade " << ref.get_grade_exec() << std::endl;
 	return os;
 }

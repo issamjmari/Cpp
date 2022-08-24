@@ -13,9 +13,7 @@ Bureaucrat::Bureaucrat(int grade, const std::string p_Name) : Name(p_Name)
 	else if(grade > 150)
 		throw Low_mem;
 	else
-	{
 		this->Grade = grade;
-	}
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &ref) : Name(ref.Name), Grade(ref.Grade)

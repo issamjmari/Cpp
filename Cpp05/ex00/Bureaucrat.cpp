@@ -13,9 +13,7 @@ Bureaucrat::Bureaucrat(int grade, const std::string p_Name) : Name(p_Name)
 	else if(grade > 150)
 		throw Low_mem;
 	else
-	{
 		this->Grade = grade;
-	}
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &ref) : Name(ref.Name), Grade(ref.Grade)
@@ -53,6 +51,6 @@ const Bureaucrat Bureaucrat::operator=(const Bureaucrat &ref)
 
 std::ostream& operator<<(std::ostream &os, const Bureaucrat &ref)
 {
-	std::cout << ref.getName() << ", bireaucrat grade " << ref.getGrade() << ".\n";
+	std::cout << ref.getName() << ", bureaucrat grade " << ref.getGrade() << ".\n";
 	return os;
 }

@@ -25,9 +25,8 @@ grade_exec(grade_ex)
 	if(grade_ex < 1 || grade_s < 1)
 		throw High_mem;
 }
-Form::Form(void) : Name(""), v_signed(0), grade_sign(1), grade_exec(1)
+Form::Form(void) : v_signed(0), grade_sign(1), grade_exec(1)
 {
-
 }
 Form::Form(const Form &ref)  : v_signed(0) , grade_sign(ref.grade_sign), grade_exec(ref.grade_exec)
 {

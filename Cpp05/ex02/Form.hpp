@@ -23,7 +23,7 @@
 			Form(void);
 			Form(const Form &ref);
 			virtual void execute(Bureaucrat const & executor) const = 0;
-			// const Form operator=(const Form &);
+			void	operator=(const Form &);
 			~Form(void);
 			void	beSigned(Bureaucrat &ref);
 	} ;

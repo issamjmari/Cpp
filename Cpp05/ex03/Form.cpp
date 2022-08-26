@@ -40,7 +40,9 @@ void	Form::beSigned(Bureaucrat &Bur)
 	else
 		throw Low_mem;
 }
-
+void Form::operator=(const Form &)
+{
+}
 std::ostream& operator<<(std::ostream &os, const Form &ref)
 {
 	std::cout << "Form " << ref.get_Name() << " has sign grade " << ref.get_grade_sign() <<\

@@ -5,7 +5,7 @@ OBJ = $(SRC:.cpp=.o)
 GPP = c++ -std=c++98
 GFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
-NAME = multi_form
+NAME = intern_form
 
 all: $(NAME)
 $(NAME): $(OBJ)

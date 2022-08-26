@@ -7,6 +7,8 @@
 			PresidentialPardonForm(void);
 			PresidentialPardonForm(const std::string target);
 			void execute(Bureaucrat const & executor) const;
+			const PresidentialPardonForm	operator=(const PresidentialPardonForm &);
+			PresidentialPardonForm(const PresidentialPardonForm &ref);
 			~PresidentialPardonForm(void);
 	} ;
 #endif

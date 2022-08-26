@@ -42,10 +42,13 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : Form(ta
 
 }
 
-// ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &ref)
-// {
-
-// }
+const ShrubberyCreationForm	ShrubberyCreationForm::operator=(const ShrubberyCreationForm &ref)
+{
+  return (ShrubberyCreationForm(ref.get_Name()));
+}
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &ref) : Form(ref.get_Name(), ref.get_grade_sign(), ref.get_grade_exec())
+{
+}
 ShrubberyCreationForm::~ShrubberyCreationForm(void)
 {
 }

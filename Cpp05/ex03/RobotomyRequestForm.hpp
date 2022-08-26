@@ -9,6 +9,8 @@
 			RobotomyRequestForm(void);
 			RobotomyRequestForm(const std::string target);
 			void execute(Bureaucrat const & executor) const;
+			const RobotomyRequestForm	operator=(const RobotomyRequestForm &);
+			RobotomyRequestForm(const RobotomyRequestForm &ref);
 			~RobotomyRequestForm(void);
 	} ;
 #endif

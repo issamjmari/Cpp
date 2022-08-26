@@ -13,6 +13,14 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string target) : Form(
 {
 }
 
+const PresidentialPardonForm	PresidentialPardonForm::operator=(const PresidentialPardonForm &ref)
+{
+  return (PresidentialPardonForm(ref.get_Name()));
+}
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &ref) : Form(ref.get_Name(), ref.get_grade_sign(), ref.get_grade_exec())
+{
+}
+
 PresidentialPardonForm::~PresidentialPardonForm(void)
 {
 }

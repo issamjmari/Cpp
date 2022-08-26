@@ -9,6 +9,8 @@
 			ShrubberyCreationForm(void);
 			ShrubberyCreationForm(const std::string target);
 			void execute(Bureaucrat const & executor) const;
+			const ShrubberyCreationForm	operator=(const ShrubberyCreationForm &);
+			ShrubberyCreationForm(const ShrubberyCreationForm &ref);
 			~ShrubberyCreationForm(void);
 	} ;
 #endif

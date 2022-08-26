@@ -5,25 +5,30 @@
 #include "WrongCat.hpp"
 int main()
 {
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	// const Animal* j = new Dog();
+	// const Animal* i = new Cat();
 	
-	delete j; //should not create a leak
-	delete i;
-	const Animal *animals[12];
-	int loop = 0;
-	while (loop < 12)
+	// delete j; //should not create a leak
+	// delete i;
+	// const Animal *animals[12];
+	// int loop = 0;
+	// while (loop < 12)
+	// {
+	// 	if(loop < 6)
+	// 		animals[loop] = new Cat();
+	// 	else
+	// 		animals[loop] = new Dog();
+	// 	loop++;
+	// }
+	// loop = 0;
+	// while (loop < 12)
+	// {
+	// 	delete animals[loop];
+	// 	loop++;
+	// }
+	Dog a;
 	{
-		if(loop < 6)
-			animals[loop] = new Cat();
-		else
-			animals[loop] = new Dog();
-		loop++;
+		Dog tmp = a;
 	}
-	loop = 0;
-	while (loop < 12)
-	{
-		delete animals[loop];
-		loop++;
-	}
+	std::cout << a.getType() << std::endl;
 }

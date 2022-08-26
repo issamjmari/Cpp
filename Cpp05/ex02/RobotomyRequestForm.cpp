@@ -22,7 +22,13 @@ RobotomyRequestForm::RobotomyRequestForm(void)
 RobotomyRequestForm::RobotomyRequestForm(const std::string target) : Form(target, 72, 45)
 {
 }
-
+const RobotomyRequestForm	RobotomyRequestForm::operator=(const RobotomyRequestForm &ref)
+{
+  return (RobotomyRequestForm(ref.get_Name()));
+}
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &ref) : Form(ref.get_Name(), ref.get_grade_sign(), ref.get_grade_exec())
+{
+}
 RobotomyRequestForm::~RobotomyRequestForm(void)
 {
 }

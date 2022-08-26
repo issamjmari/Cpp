@@ -5,8 +5,8 @@ int	parse_char(std::string str)
 	if(!str.compare("nan") || !str.compare("-inf") || !str.compare("+inf")
 	|| !str.compare("-inff") || !str.compare("nanf"))
 		return (-1);
-	if(str[0] < 33 && str[0] > 126)
-		return (-2);
+	if(str.length() != 1)
+		return (-1);
 	if(isalpha(str[0]) && str.length() == 1)
 		return (1);
 	return (0);
@@ -93,34 +93,32 @@ int main(int a, char **b)
 			std::cout << "char: impossible\n";
 		else if(_char == -2)
 			std::cout << "char: Non displayable";
-		else
-			convert_to_char(str);
-		return ;
+		convert_to_char(str);
+		return 1;
 	}
 	int _int = parse_int(str);
 	if (_int)
 	{
-		if(_char == -1)
+		if(_int == -1)
 			std::cout << "int: impossible\n";
-		else if(_char == -2)
+		else if(_int == -2)
 			std::cout << "int: Non displayable";
 		convert_to_int(str);
-		return ;
+		return 1;
 	}
 	int _float = parse_float(str);
 	if (_float)
 	{
-		if(_char == -1)
+		if(_float == -1)
 			std::cout << "float: impossible\n";
 		convert_to_float(str);
-		return ;
+		return 1;
 	}
 	int _double = parse_double(str);
-	else if (_double)
+	if (_double)
 	{
 		convert_to_double(str);
-		return ;
+		return 1;
 	}
-	else
-		std::cout << "type is not valid, please try again\n";
+	std::cout << "type is not valid, please try again\n";
 }

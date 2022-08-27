@@ -1,25 +1,14 @@
 #include "converts.hpp"
 
-int	parse_char(std::string str)
+bool	parse_char(std::string str)
 {
-	if(!str.compare("nan") || !str.compare("-inf") || !str.compare("+inf")
-	|| !str.compare("-inff") || !str.compare("nanf"))
-		return (-1);
-	if(str.length() != 1)
-		return (-1);
-	if(isalpha(str[0]) && str.length() == 1)
+	if((str[0] >= 33 && str[0] <= 126) && str.length() == 1)
 		return (1);
 	return (0);
 }
 
-int	parse_int(std::string str)
+bool	parse_int(std::string str)
 {
-	if(!str.compare("nan") || !str.compare("-inf") || !str.compare("+inf")
-	|| !str.compare("-inff") || !str.compare("nanf"))
-		return (-1);
-	if(std::stoi(str) < -2147483648 &&
-	std::stoi(str) > 2147483647)
-		return (-2);
 	int i = 0;
 	if(str[0] == '-')
 		i++;
@@ -35,13 +24,12 @@ int	parse_int(std::string str)
 		return 0;
 }
 
-int	parse_float(std::string str)
+bool	parse_float(std::string str)
 {
-	if(std::stod(str) < FLT_MIN && std::stod(str) > FLT_MAX)
-		return -1;
-	if(str.compare("-inff") == 0 || str.compare("+inff") == 0 || \
-str.compare("nanf") == 0)
-	return 1;
+	double checks = std::stod(str);
+	if(checks < std::numeric_limits<float>::min() &&
+	checks > std::numeric_limits<float>::max())
+		return (0);
 	int i = 0;
 	bool is_float = 0;
 	if(str[0] == '-')
@@ -59,11 +47,8 @@ str.compare("nanf") == 0)
 	return 0;
 }
 
-int	parse_double(std::string str)
+bool	parse_double(std::string str)
 {
-	if(str.compare("-inf") == 0 || str.compare("+inf") == 0 || \
-str.compare("nan") == 0)
-	return 1;
 	int i = 0;
 	bool is_double = 0;
 	if(str[0] == '-')
@@ -87,37 +72,27 @@ int main(int a, char **b)
 {
 	std::string str(b[1]);
 	int _char = parse_char(str);
-	if (_char)
+	if(_char)
 	{
-		if(_char == -1)
-			std::cout << "char: impossible\n";
-		else if(_char == -2)
-			std::cout << "char: Non displayable";
-		convert_to_char(str);
+		convert_from_char(str);
 		return 1;
 	}
 	int _int = parse_int(str);
-	if (_int)
+	if(_int)
 	{
-		if(_int == -1)
-			std::cout << "int: impossible\n";
-		else if(_int == -2)
-			std::cout << "int: Non displayable";
-		convert_to_int(str);
+		convert_from_int(str);
 		return 1;
 	}
 	int _float = parse_float(str);
-	if (_float)
+	if(_float)
 	{
-		if(_float == -1)
-			std::cout << "float: impossible\n";
-		convert_to_float(str);
+		convert_from_float(str);
 		return 1;
 	}
 	int _double = parse_double(str);
-	if (_double)
+	if(_double)
 	{
-		convert_to_double(str);
+		convert_from_double(str);
 		return 1;
 	}
 	std::cout << "type is not valid, please try again\n";

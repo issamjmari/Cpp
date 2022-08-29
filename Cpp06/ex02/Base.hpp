@@ -1,12 +1,9 @@
 #ifndef BASE_HPP
 #define BASE_HPP
 	#include <iostream>
-	class base
+	class Base
 	{
 		public:
-			virtual ~base(void)
-			{
-				
-			}
+			virtual ~Base(void);
 	};
 #endif

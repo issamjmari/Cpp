@@ -4,6 +4,8 @@
 	#include <iostream>
 	#include <limits>
 	#include <float.h>
+	#include <cstdlib>
+	#include <exception>
 	void	convert_from_char(std::string type);
 	void	convert_from_int(std::string type);
 	void	convert_from_float(std::string type);

@@ -5,14 +5,12 @@
 #include <time.h>
 #include <cstdlib>
 
-void identify(base& p)
+void identify(Base& p)
 {
-	A a;
-	B b;
-	C c;
 	try
 	{
 		A &ref = dynamic_cast<A &> (p);
+		(void) ref;
 		std::cout << "A\n";
 		return ;
 	}
@@ -22,6 +20,7 @@ void identify(base& p)
 	try
 	{
 		B &ref = dynamic_cast<B &> (p);
+		(void) ref;
 		std::cout << "B\n";
 		return ;
 	}
@@ -31,6 +30,7 @@ void identify(base& p)
 	try
 	{
 		C &ref = dynamic_cast<C &> (p);
+		(void) ref;
 		std::cout << "C\n";
 		return ;
 	}
@@ -38,37 +38,28 @@ void identify(base& p)
 	{
 	}
 }
-void identify(base* p)
+void identify(Base* p)
 {
-	A a;
-	B b;
-	C c;
 	if(dynamic_cast<A *> (p) != nullptr)
-	{
 		std::cout << "A" << std::endl;
-	}
 	else if(dynamic_cast<B *> (p) != nullptr)
-	{
 		std::cout << "B" << std::endl;
-	}
 	else if(dynamic_cast<C *> (p) != nullptr)
-	{
 		std::cout << "C" << std::endl;
-	}
 }
-base * generate(void)
+Base * generate(void)
 {
-	A a;
-	B b;
-	C c;
-	base *arr[3] = {&a, &b, &c};
 	srand(time(NULL));
 	int randNum = rand() % 3;
-	return (arr[randNum]);
-	return (arr[randNum]);
+	if (randNum == 0)
+		return (new A());
+	if (randNum == 1)
+		return (new B());
+	return (new C());
 }
 int main()
 {
-	base *a = generate();
+	Base *a = generate();
+	identify(a);
 	identify(*a);
 }

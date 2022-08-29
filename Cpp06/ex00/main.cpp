@@ -2,7 +2,7 @@
 
 bool	parse_char(std::string str)
 {
-	if((str[0] >= 33 && str[0] <= 126) && str.length() == 1)
+	if(isprint(str[0]) && !isnumber(str[0]) && str.length() == 1)
 		return (1);
 	return (0);
 }
@@ -26,11 +26,22 @@ bool	parse_int(std::string str)
 
 bool	parse_float(std::string str)
 {
-	double checks = std::stod(str);
-	if(checks < std::numeric_limits<float>::min() &&
-	checks > std::numeric_limits<float>::max())
+	double checks;
+	if(!str.compare("nanf") || !str.compare("-inff") || !str.compare("+inff"))
+		return 1;
+	try
+	{
+		checks = std::stod(str);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Invalid type\n";
+		exit(-1);
+	}
+	if(checks > 340282346638528859811704183484516925440.0
+	|| checks < -340282346638528859811704183484516925440.0)
 		return (0);
-	int i = 0;
+	size_t i = 0;
 	bool is_float = 0;
 	if(str[0] == '-')
 		i++;
@@ -49,7 +60,18 @@ bool	parse_float(std::string str)
 
 bool	parse_double(std::string str)
 {
-	int i = 0;
+	if(!str.compare("nan") || !str.compare("-inf") || !str.compare("+inf"))
+		return 1;
+	try
+	{
+		double check = std::stod(str);
+		(void) check;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Invalid type\n";
+	}
+	size_t i = 0;
 	bool is_double = 0;
 	if(str[0] == '-')
 		i++;
@@ -70,6 +92,7 @@ bool	parse_double(std::string str)
 
 int main(int a, char **b)
 {
+	(void) a; 
 	std::string str(b[1]);
 	int _char = parse_char(str);
 	if(_char)

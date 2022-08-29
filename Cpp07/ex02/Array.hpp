@@ -36,7 +36,7 @@
 			}
 			T &operator[](unsigned int i) 
 			{
-				if(i > s)
+				if(i >= s)
 					throw std::out_of_range("Out of range");
 				return arr[i];
         	}

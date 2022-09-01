@@ -38,7 +38,7 @@ void Span::addNumber(int number)
 	try
 	{
 		if(v.size() == this->N)
-			throw std::runtime_error("vector is already full\n");
+			throw std::runtime_error("Can not add number, vector is already full\n");
 		else
 			v.push_back(number);
 	}
@@ -50,22 +50,52 @@ void Span::addNumber(int number)
 
 int Span::shortestSpan(void)
 {
-	// std::vector temp;
-	// temp = v;
-	// std::sort(temp, temp + temp.size());
-	return 0;
+	try
+	{
+		if(v.size() <= 1)
+			throw std::runtime_error("ShortestSpan : There\
+are not enough numbers\n");
+		int smallest = 2147483647;
+		std::vector<int> temp;
+		temp = v;
+		std::sort(temp.begin(), temp.end());
+		unsigned int size_of = temp.size();
+		for(int i = 0; i < size_of - 1; i++)
+		{
+			if(std::min(temp[i + 1] - temp[i], smallest) == \
+		(temp[i + 1] - temp[i]))
+				smallest = temp[i + 1] - temp[i];
+		}
+		return smallest;
+	}
+	catch(std::exception &e)
+	{
+		std::cout << e.what();
+	}
+	return (-1);
 }
 int Span::longestSpan(void)
 {
-	std::vector<int> temp;
-	temp = v;
-	std::sort(temp.begin(), temp.end());
-	std::vector<int>::iterator smallest = std::min_element(temp.begin(), temp.end());
-	std::vector<int>::iterator largest = std::max_element(temp.begin(), temp.end());
-	return (*largest - *smallest);
+	try
+	{
+		if(v.size() <= 1)
+			throw std::runtime_error("LongestSpan : There\
+are not enough numbers\n");
+		std::vector<int>::iterator smallest = std::min_element(v.begin(), v.end());
+		std::vector<int>::iterator largest = std::max_element(v.begin(), v.end());
+		return (*largest - *smallest);
+	}
+	catch(std::exception &e)
+	{
+		std::cout << e.what();
+	}
+	return (-1);
 }
 
-// void addNumbers(void)
-// {
-	
-// }
+void Span::addNumbers(void)
+{
+	srand(time(NULL));
+	for (unsigned int i = 0; i < N; ++i)
+    	v.push_back(rand());
+	std::random_shuffle(v.begin(), v.end());
+}

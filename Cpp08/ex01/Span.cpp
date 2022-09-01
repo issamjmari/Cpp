@@ -60,7 +60,7 @@ are not enough numbers\n");
 		temp = v;
 		std::sort(temp.begin(), temp.end());
 		unsigned int size_of = temp.size();
-		for(int i = 0; i < size_of - 1; i++)
+		for(unsigned int i = 0; i < size_of - 1; i++)
 		{
 			if(std::min(temp[i + 1] - temp[i], smallest) == \
 		(temp[i + 1] - temp[i]))
@@ -71,8 +71,9 @@ are not enough numbers\n");
 	catch(std::exception &e)
 	{
 		std::cout << e.what();
+		return (-1);
 	}
-	return (-1);
+	return (0);
 }
 int Span::longestSpan(void)
 {
@@ -88,14 +89,13 @@ are not enough numbers\n");
 	catch(std::exception &e)
 	{
 		std::cout << e.what();
+		return (-1);
 	}
-	return (-1);
+	return (0);
 }
 
-void Span::addNumbers(void)
+void Span::addNumbers(int *first, int *last)
 {
-	srand(time(NULL));
-	for (unsigned int i = 0; i < N; ++i)
-    	v.push_back(rand());
-	std::random_shuffle(v.begin(), v.end());
+	for (; first < last; first++)
+		addNumber(*first);
 }

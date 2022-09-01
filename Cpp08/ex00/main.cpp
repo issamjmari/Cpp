@@ -1,5 +1,5 @@
 #include "easyfind.hpp"
-#include <list>
+
 int main()
 {
 	int arr1[] = {10, 20, 30, 16, 50};

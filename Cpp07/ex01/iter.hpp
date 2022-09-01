@@ -9,7 +9,6 @@
 	template <typename T>
 	void iter(T arr[], int length, void f(T))
 	{
-		int i = 0;
 		for(int i = 0; i < length; i++)
 			f(arr[i]);
 	}

@@ -18,10 +18,12 @@ bool	parse_int(std::string str)
 			return 0;
 		i++;
 	}
-	if(std::stol(str) <= INT_MAX && std::stol(str) >= INT_MIN)
-		return 1;
-	else
-		return 0;
+	if(str.length() < 12)
+	{
+		if(std::stol(str) <= INT_MAX && std::stol(str) >= INT_MIN)
+			return 1;
+	}
+	return 0;
 }
 
 bool	parse_float(std::string str)
@@ -70,6 +72,7 @@ bool	parse_double(std::string str)
 	catch (std::exception &e)
 	{
 		std::cout << "Invalid type\n";
+		exit(-1);
 	}
 	size_t i = 0;
 	bool is_double = 0;
@@ -92,7 +95,11 @@ bool	parse_double(std::string str)
 
 int main(int a, char **b)
 {
-	(void) a; 
+	if(a != 2)
+	{
+		std::cout << "Invalid arguments\n";
+		return (-1);
+	}
 	std::string str(b[1]);
 	int _char = parse_char(str);
 	if(_char)

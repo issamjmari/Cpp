@@ -15,4 +15,6 @@ clean:
 	$(RM) $(OBJ)
 fclean : clean
 	$(RM) $(NAME)
+clean_bin : fclean
+	$(RM) *_shrubbery
 re : fclean all

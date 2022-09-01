@@ -11,7 +11,12 @@
 		public:
 			Array(void)
 			{
-				arr = new T();
+				arr = 0;
+			}
+			~Array(void)
+			{
+				if(arr)
+					delete [] arr;
 			}
 			Array(unsigned int n) : s(n)
 			{

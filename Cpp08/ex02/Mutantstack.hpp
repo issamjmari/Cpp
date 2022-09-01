@@ -7,6 +7,21 @@
 	{
 		public:
 			typedef typename std::deque<T>::iterator iterator;
+			MutantStack(const MutantStack &ref)
+			{
+				this->c = ref.c;
+			}
+			MutantStack(void)
+			{
+			}
+			~MutantStack(void)
+			{
+			}
+			MutantStack &operator=(const MutantStack &ref)
+			{
+				this->c = ref.c;
+				return (*this);
+			}
 			iterator     begin()
 			{
 				return (this->c.begin());

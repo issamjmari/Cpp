@@ -188,6 +188,7 @@ void BitcoinExchange::getDateAndVal ( char *input )
 			}
 			if(formCheckLength != 3 && parsingError == false)
 				std::cout << "Error: bad input => " << buffer << std::endl;
+			parsingError = false;
 		}
 	}
 }

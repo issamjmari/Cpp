@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(void)
+PmergeMe::PmergeMe(void) : isOdd(0), leftOddNum(-1)
 {
 
 }

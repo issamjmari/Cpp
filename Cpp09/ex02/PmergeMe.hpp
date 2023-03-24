@@ -17,6 +17,6 @@
 			std::vector<int>        Output;
 			std::vector<int>        insertedValues;
 			bool				    isOdd;
-
+			int						leftOddNum;
 	};
 #endif

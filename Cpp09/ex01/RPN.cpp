@@ -79,6 +79,6 @@ bool RPN::isOperand(std::string &word)
 {
 	if(word == "*" || word == "+"
 	|| word == "-" || word == "/")
-		return 1;
-	return 0;
+		return true;
+	return false;
 }

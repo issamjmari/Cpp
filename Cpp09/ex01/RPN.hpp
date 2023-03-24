@@ -1,5 +1,5 @@
-#ifndef BITCOIN_EXCHANGE_HPP
-#define BITCOIN_EXCHANGE_HPP
+#ifndef RPN_HPP
+#define RPN_HPP
 	#include <stack>
 	#include <fstream>
 	#include <string>

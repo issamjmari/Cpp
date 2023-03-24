@@ -3,8 +3,9 @@
 bool	sortBySecond(std::pair<int, int> &firstPair
    , std::pair<int, int> &secondPair )
 {
-	return firstPair.first > secondPair.first;
+	return firstPair.first < secondPair.first;
 }
+
 int main(int ac, char **av)
 {
 	if(ac == 1)
@@ -84,21 +85,15 @@ int main(int ac, char **av)
 	std::vector<std::pair<int, int> >::iterator vecIt2 = sortMethod.pairValues.begin();
 	for(; vecIt2 != sortMethod.pairValues.end(); vecIt2++)
 	{
-		std::cout << "first is " << vecIt2->first << std::endl;
-		std::cout << "second is " << vecIt2->second << std::endl;
-		// sortMethod.Output.push_back(vecIt2->first);
-		// sortMethod.insertedValues.push_back(vecIt2->second);
+		sortMethod.Output.push_back(vecIt2->first);
+		sortMethod.insertedValues.push_back(vecIt2->second);
 	}
-	// std::vector<int>::iterator outIt = sortMethod.Output.begin();
-	// std::vector<int>::iterator insIt = sortMethod.insertedValues.begin();
-	// std::cout << "out values are : \n";
-	// for(; outIt != sortMethod.Output.end(); outIt++)
-	// {
-	// 	std::cout << *outIt << std::endl;
-	// }
-	// std::cout << "ins values are : \n";
-	// for(; insIt != sortMethod.insertedValues.end(); insIt++)
-	// {
-	// 	std::cout << *insIt << std::endl;
-	// }
+	std::vector<int>::iterator insIt = sortMethod.insertedValues.begin();
+	for(; insIt != sortMethod.insertedValues.end(); insIt++)
+	{
+		std::vector<int>::iterator pos 
+			= std::upper_bound(sortMethod.Output.begin(), sortMethod.Output.end(), *insIt);
+		sortMethod.Output.insert(pos, *insIt);
+	}
+	std::vector<int>::iterator outIt = sortMethod.Output.begin();
 }

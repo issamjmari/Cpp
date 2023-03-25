@@ -14,6 +14,7 @@
 			BitcoinExchange &operator=(const BitcoinExchange &);
 			void fillExchangeRates( void );
 			void getDateAndVal ( char * );
+			bool 					isAllDigitDate( std::string & );
 			std::ifstream			   exchangeRatesFile;
 			std::ifstream			   inputDatesFile;
 			int 					   fileLength;

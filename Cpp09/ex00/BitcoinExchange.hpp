@@ -18,9 +18,9 @@
 			std::ifstream			   exchangeRatesFile;
 			std::ifstream			   inputDatesFile;
 			int 					   fileLength;
-			std::map<std::string, float, std::greater<std::string> > exchangeRates;
+			std::map<std::string, double, std::greater<std::string> > exchangeRates;
 			std::string				   date;
-			float					   value;
+			double					   value;
 			bool					   parsingError;
 	};
 #endif

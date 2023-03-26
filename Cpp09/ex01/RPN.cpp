@@ -1,6 +1,6 @@
 #include "RPN.hpp"
 
-RPN::RPN(void)
+RPN::RPN(void) : operands(0), numbers(0)
 {
 
 }
@@ -17,8 +17,26 @@ RPN &RPN::operator=(const RPN &)
 	return *this;
 }
 
+bool RPN::isValidInput( std::string &nums)
+{
+	std::stringstream data(nums);
+	std::string word;
+	while(data >> word)
+	{
+		if(isOperand(word))
+			this->operands++;
+		else
+			this->numbers++;
+	}
+	return (this->numbers == this->operands + 1);
+}
 int	RPN::calculateNums( std::string &nums )
 {
+	if(!isValidInput(nums))
+	{
+		std::cout << "expression can't be calculated\n";
+		exit(1);
+	}
 	std::stringstream data(nums);
 	std::string word;
 	while(data >> word)

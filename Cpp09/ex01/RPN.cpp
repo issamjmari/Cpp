@@ -28,7 +28,7 @@ int	RPN::calculateNums( std::string &nums )
 			int stackSize = numStack.size();
 			if(stackSize < 2)
 			{
-				std::cout << "Error : stack doesn't have enough numbers to be calculated";
+				std::cout << "Error : stack doesn't have enough numbers to be calculated\n";
 				exit(1);
 			}
 			try
@@ -44,11 +44,15 @@ int	RPN::calculateNums( std::string &nums )
 				if(word == "-")
 					numStack.push(second_num - first_num);
 				if(word == "/")
+				{
+					if(first_num == 0)
+						throw std::runtime_error("");
 					numStack.push(second_num / first_num);
+				}
 			}
 			catch(const std::exception& e)
 			{
-				std::cout << "Error : expression can't be calculated properly";
+				std::cout << "Error : expression can't be calculated properly\n";
 				exit(1);
 			}
 		}
@@ -58,7 +62,7 @@ int	RPN::calculateNums( std::string &nums )
 			{
 				if(!isdigit(word[i]))
 				{
-					std::cout << "Error : expression has invalid input\n";
+					std::cout << "Error : expression has invalid input\n\n";
 					exit(1);
 				}
 			}
@@ -68,7 +72,7 @@ int	RPN::calculateNums( std::string &nums )
 			}
 			catch(const std::exception& e)
 			{
-				std::cout << "Error : wrong number input\n";
+				std::cout << "Error : wrong number input\n\n";
 				exit(1);
 			}
 		}

@@ -9,4 +9,5 @@ int main(int ac, char **av)
 	}
 	PmergeMe sortMethod;
 	sortMethod.pairingVector(ac, av);
+	sortMethod.pairingDeque(ac, av);
 }

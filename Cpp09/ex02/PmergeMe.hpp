@@ -7,25 +7,36 @@
 	#include <iostream>
 	#include <algorithm>
 	#include <sstream>
-	#include <time.h>
+	#include <sys/time.h>
+	
 	class PmergeMe
 	{
+		private:
+			std::vector<std::pair<int, int> >     VecpairValues;
+			std::vector<int>        VecOutput;
+			std::vector<int>        VecinsertedValues;
+
+			std::deque<std::pair<int, int> >     DeqpairValues;
+			std::deque<int>        DeqOutput;
+			std::deque<int>        DeqinsertedValues;
 		public:
 			PmergeMe(void);
 			PmergeMe(const PmergeMe &);
 			~PmergeMe(void);
 			PmergeMe &operator=(const PmergeMe &);
-			clock_t       			algoBeg;
-			clock_t       			algoEnd;
-			int					    vecSize;
-			std::vector<std::pair<int, int> >     pairValues;
-			std::vector<int>        Output;
-			std::vector<int>        insertedValues;
+			struct timeval start_time1;
+			struct timeval end_time1;
+			struct timeval start_time2;
+			struct timeval end_time2;
+			int					    vecSize;			
 			static bool					sortBySecond( std::pair<int, int> &, std::pair<int, int> & );
 			bool				    isOdd;
 			int						leftOddNum;
 			void				    pairingVector(  int , char ** );
-			void				    insertSmallerValsToOutput( void );
-			void					printAlgoTime( void );
+			void				    insertSmallerVecValsToOutput( void );
+			void				    pairingDeque(  int , char ** );
+			void				    insertSmallerDeqValsToOutput( void );
+			void					printVecAlgoTime( void );
+			void					printDeqAlgoTime( void );
 	};
 #endif

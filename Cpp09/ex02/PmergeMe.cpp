@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(void) : isOdd(0), leftOddNum(-1)
+PmergeMe::PmergeMe(void) : isOdd(0), leftOddNum(0)
 {
 
 }
@@ -25,16 +25,12 @@ bool	PmergeMe::sortBySecond(std::pair<int, int> &firstPair
 
 void	PmergeMe::insertSmallerVecValsToOutput( void )
 {
-	std::vector<std::pair<int, int> >::iterator vecIt = this->VecpairValues.begin();
-	for(; vecIt != this->VecpairValues.end(); vecIt++)
-	{
-		if(vecIt->first < vecIt->second)
-			std::swap(vecIt->first, vecIt->second);
-	}
 	std::sort(this->VecpairValues.begin(), this->VecpairValues.end(), sortBySecond);
 	std::vector<std::pair<int, int> >::iterator vecIt2 = this->VecpairValues.begin();
 	for(; vecIt2 != this->VecpairValues.end(); vecIt2++)
 	{
+		if(vecIt2->first < vecIt2->second)
+			std::swap(vecIt2->first, vecIt2->second);
 		this->VecOutput.push_back(vecIt2->first);
 		this->VecinsertedValues.push_back(vecIt2->second);
 	}
@@ -45,25 +41,15 @@ void	PmergeMe::insertSmallerVecValsToOutput( void )
 			= std::upper_bound(this->VecOutput.begin(), this->VecOutput.end(), *insIt);
 		this->VecOutput.insert(pos, *insIt);
 	}
-	if(this->isOdd)
-	{
-		std::vector<int>::iterator pos 
-			= std::upper_bound(this->VecOutput.begin(), this->VecOutput.end(), leftOddNum);
-		this->VecOutput.insert(pos, leftOddNum);
-	}
 }
 void	PmergeMe::insertSmallerDeqValsToOutput( void )
 {
-	std::deque<std::pair<int, int> >::iterator DeqIt = this->DeqpairValues.begin();
-	for(; DeqIt != this->DeqpairValues.end(); DeqIt++)
-	{
-		if(DeqIt->first < DeqIt->second)
-			std::swap(DeqIt->first, DeqIt->second);
-	}
 	std::sort(this->DeqpairValues.begin(), this->DeqpairValues.end(), sortBySecond);
 	std::deque<std::pair<int, int> >::iterator DeqIt2 = this->DeqpairValues.begin();
 	for(; DeqIt2 != this->DeqpairValues.end(); DeqIt2++)
 	{
+		if(DeqIt2->first < DeqIt2->second)
+			std::swap(DeqIt2->first, DeqIt2->second);
 		this->DeqOutput.push_back(DeqIt2->first);
 		this->DeqinsertedValues.push_back(DeqIt2->second);
 	}
@@ -74,43 +60,22 @@ void	PmergeMe::insertSmallerDeqValsToOutput( void )
 			= std::upper_bound(this->DeqOutput.begin(), this->DeqOutput.end(), *insIt);
 		this->DeqOutput.insert(pos, *insIt);
 	}
-	if(this->isOdd)
-	{
-		std::deque<int>::iterator pos 
-			= std::upper_bound(this->DeqOutput.begin(), this->DeqOutput.end(), leftOddNum);
-		this->DeqOutput.insert(pos, leftOddNum);
-	}
-	// std::deque<int>::iterator DeqIt3 = this->DeqOutput.begin();
-	// 	std::cout << "deque sorted : \n";
-	// for(; DeqIt3 != this->DeqOutput.end(); DeqIt3++)
-	// {
-	// 	std::cout << *DeqIt3 << std::endl;
-	// }
 }
 void	PmergeMe::printVecAlgoTime( void )
 {
-	gettimeofday(&end_time1, NULL);
-	long seconds = end_time1.tv_sec - start_time1.tv_sec;
-    long microseconds = end_time1.tv_usec - start_time1.tv_usec;
-	std::cout << "seconds " << seconds;
-	std::cout << "microseconds " << microseconds << std::endl;
-    double duration = seconds + (double)microseconds / 1000000;
-	std::cout << "Time to process a range of " << this->vecSize - 1 << " elements with std::vector : " << duration << " us" << std::endl;
+	std::cout << "Time to process a range of " << this->vecSize <<
+            " elements with std::vector : "<< this->VecexecuteTime << " us\n";
 }
 void	PmergeMe::printDeqAlgoTime( void )
 {
 	gettimeofday(&end_time2, NULL);
-	long seconds = end_time2.tv_sec - start_time2.tv_sec;
-    long microseconds = end_time2.tv_usec - start_time2.tv_usec;
-	std::cout << "seconds " << seconds;
-	std::cout << "microseconds " << microseconds << std::endl;
-    float duration = seconds + (float)microseconds / 1000000;
-	std::cout << "Time to process a range of " << this->vecSize - 1 << " elements with std::deque : " << duration << " us" << std::endl;
+	std::cout << "Time to process a range of " << this->vecSize <<
+            " elements with std::deque : "<< (static_cast<float>(((end_time2.tv_sec) / 1000000 + end_time2.tv_usec) -
+            ((start_time2.tv_sec) / 1000000.0 + start_time2.tv_usec))) << " us\n";
 }
 void PmergeMe::pairingVector( int vecSize , char **vector)
 {
 	this->vecSize = vecSize;
-    gettimeofday(&start_time1, NULL);
 	if((vecSize - 1) % 2 != 0)
 		this->isOdd = true;
 	if(this->isOdd)
@@ -124,18 +89,18 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 				char *currentArr = vector[i];
 				if(currentArr)
 				{
-					num1 = std::stoi(std::string(currentArr));
+					num1 = std::atoi(currentArr);
 					i++;
 				}
 				currentArr = vector[i];
 				if(currentArr)
 				{
-					num2 = std::stoi(std::string(currentArr));
+					num2 = std::atoi(currentArr);
 					i++;
 					this->VecpairValues.push_back(std::make_pair(num1, num2));
 				}
 			}
-			this->leftOddNum = std::stoi(vector[i]);
+			this->VecinsertedValues.insert(this->VecinsertedValues.begin(), atoi(vector[i]));
 		}
 		catch(const std::exception& e)
 		{
@@ -154,13 +119,13 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 				char *currentArr = vector[i];
 				if(currentArr)
 				{
-					num1 = std::stoi(std::string(currentArr));
+					num1 = std::atoi(currentArr);
 					i++;
 				}
 				currentArr = vector[i];
 				if(currentArr)
 				{
-					num2 = std::stoi(std::string(currentArr));
+					num2 = std::atoi(currentArr);
 					i++;
 					this->VecpairValues.push_back(std::make_pair(num1, num2));
 				}
@@ -172,7 +137,11 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 			exit(1);
 		}
 	}
+	gettimeofday(&this->start_time1, NULL);
 	insertSmallerVecValsToOutput();
+	gettimeofday(&this->end_time1, NULL);
+	this->VecexecuteTime =  static_cast<float>(((end_time1.tv_sec) / 1000000 + end_time1.tv_usec) -
+            ((start_time1.tv_sec) / 1000000.0 + start_time1.tv_usec));
 	std::cout << "Before: ";
 	for(int i = 1; i < vecSize; i++)
 		std::cout << vector[i] << " ";
@@ -180,16 +149,13 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 	std::cout << "After: ";
 	std::vector<int>::iterator outIt = this->VecOutput.begin();
 	for(; outIt != this->VecOutput.end(); outIt++)
-	{
 		std::cout << *outIt << " ";
-	}
 	std::cout << "\n";
 	printVecAlgoTime();
 }
 void PmergeMe::pairingDeque( int vecSize , char **vector)
 {
 	this->vecSize = vecSize;
-    gettimeofday(&start_time2, NULL);
 	if((vecSize - 1) % 2 != 0)
 		this->isOdd = true;
 	if(this->isOdd)
@@ -203,18 +169,18 @@ void PmergeMe::pairingDeque( int vecSize , char **vector)
 				char *currentArr = vector[i];
 				if(currentArr)
 				{
-					num1 = std::stoi(std::string(currentArr));
+					num1 = std::atoi(currentArr);
 					i++;
 				}
 				currentArr = vector[i];
 				if(currentArr)
 				{
-					num2 = std::stoi(std::string(currentArr));
+					num2 = std::atoi(currentArr);
 					i++;
 					this->DeqpairValues.push_back(std::make_pair(num1, num2));
 				}
 			}
-			this->leftOddNum = std::stoi(vector[i]);
+			this->DeqinsertedValues.insert(this->DeqinsertedValues.begin(), atoi(vector[i]));
 		}
 		catch(const std::exception& e)
 		{
@@ -233,13 +199,13 @@ void PmergeMe::pairingDeque( int vecSize , char **vector)
 				char *currentArr = vector[i];
 				if(currentArr)
 				{
-					num1 = std::stoi(std::string(currentArr));
+					num1 = std::atoi(currentArr);
 					i++;
 				}
 				currentArr = vector[i];
 				if(currentArr)
 				{
-					num2 = std::stoi(std::string(currentArr));
+					num2 = std::atoi(currentArr);
 					i++;
 					this->DeqpairValues.push_back(std::make_pair(num1, num2));
 				}
@@ -251,6 +217,7 @@ void PmergeMe::pairingDeque( int vecSize , char **vector)
 			exit(1);
 		}
 	}
+	gettimeofday(&this->start_time2, NULL);
 	insertSmallerDeqValsToOutput();
 	printDeqAlgoTime();
 }

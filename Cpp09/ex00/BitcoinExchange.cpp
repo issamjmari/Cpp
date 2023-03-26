@@ -41,10 +41,7 @@ bool 	BitcoinExchange::isAllDigitDate( std::string &str )
 	for(size_t i = 0; i < str.length(); i++)
 	{
 		if(!isdigit(str[i]))
-		{
-			std::cout << "str[i] " << str[i] << std::endl;
 			return 0;
-		}
 	}
 	return 1;
 }
@@ -67,28 +64,28 @@ void BitcoinExchange::getDateAndVal ( char *input )
 				{
 					parsingError = true;
 					std::cout << "Error: bad year as input  => " << buffer << std::endl;
-					break;
+					continue;
 				}
 				int year = std::atoi(strYear.c_str());
 				if(year > 2023)
 				{
 					parsingError = true;
 					std::cout << "Error: bad year as input  => " << buffer << std::endl;
-					break;
+					continue;
 				}
 			}
 			catch (std::exception &e)
 			{
 				parsingError = true;
 				std::cout << "Error: bad year input => " << buffer << std::endl;
-				break;
+				continue;
 			}
 		}
 		else
 		{
 			parsingError = true;
 			std::cout << "Error: bad year input => " << buffer << std::endl;
-			break;
+			continue;
 		}
 		size_t secondDash = word.find('-', firstDash + 1);
 		if(secondDash)
@@ -98,7 +95,7 @@ void BitcoinExchange::getDateAndVal ( char *input )
 			{
 				parsingError = true;
 				std::cout << "Error: bad month as input  => " << buffer << std::endl;
-				break;
+				continue;
 			}
 			try
 			{
@@ -107,28 +104,28 @@ void BitcoinExchange::getDateAndVal ( char *input )
 				{
 					parsingError = true;
 					std::cout << "Error: bad month input => " << buffer << std::endl;
-					break;
+					continue;
 				}
 			}
 			catch (std::exception &e)
 			{
 				parsingError = true;
 				std::cout << "Error: bad month input => " << buffer << std::endl;
-				break;
+				continue;
 			}
 		}
 		else
 		{
 			parsingError = true;
 			std::cout << "Error: bad month input => " << buffer << std::endl;
-			break;
+			continue;
 		}
 		std::string strDay = word.substr(secondDash + 1);
 		if(!isAllDigitDate(strDay))
 		{
 			parsingError = true;
 			std::cout << "Error: bad day as input  => " << buffer << std::endl;
-			break;
+			continue;
 		}
 		try
 		{
@@ -137,14 +134,14 @@ void BitcoinExchange::getDateAndVal ( char *input )
 			{
 				parsingError = true;
 				std::cout << "Error: bad day input => " << buffer << std::endl;
-				break;
+				continue;
 			}
 		}
 		catch (std::exception &e)
 		{
 			parsingError = true;
 			std::cout << "Error: bad day input => " << buffer << std::endl;
-			break;
+			continue;
 		}
 		this->date = word;
 		data >> word;
@@ -152,7 +149,7 @@ void BitcoinExchange::getDateAndVal ( char *input )
 		{
 			parsingError = true;
 			std::cout << "Error: bad input => " << buffer << std::endl;
-			break;
+			continue;
 		}
 		try
 		{
@@ -161,13 +158,13 @@ void BitcoinExchange::getDateAndVal ( char *input )
 			{
 				parsingError = true;
 				std::cout << "Error: too large number\n";
-				break;
+				continue;
 			}
 			if(this->value < 0)
 			{
 				parsingError = true;
-				std::cout << "Error: not a positive number\n";
-				break;
+				std::cout << "Error: not a positive value\n";
+				continue;
 			}
 			std::map<std::string, double, std::greater<std::string> >::iterator 
 				mapIt = this->exchangeRates.lower_bound(this->date);
@@ -179,12 +176,9 @@ void BitcoinExchange::getDateAndVal ( char *input )
 		{
 			parsingError = true;
 			std::cout << "Error: value is nor float nor integer\n";
-			break;
+			continue;
 		}
-		data >> word;
-		std::cout << "word " << word << std::endl;
-		exit(1);
-		if(word.length() != 0 && parsingError == false)
+		if(!data.eof() && parsingError == false)
 			std::cout << "Error: bad input => " << buffer << std::endl;
 	}
 }

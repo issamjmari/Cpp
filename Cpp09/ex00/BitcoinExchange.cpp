@@ -48,6 +48,11 @@ bool 	BitcoinExchange::isAllDigitDate( std::string &str )
 void BitcoinExchange::getDateAndVal ( char *input )
 {
 	this->inputDatesFile.open(input);
+	if(!this->inputDatesFile.is_open())
+	{
+		std::cout << "Error: could not open file.\n";
+		exit(1);
+	}
 	std::string buffer;
 	while(std::getline(this->inputDatesFile, buffer))
 	{
@@ -63,28 +68,28 @@ void BitcoinExchange::getDateAndVal ( char *input )
 				if(!isAllDigitDate(strYear))
 				{
 					parsingError = true;
-					std::cout << "Error: bad year as input  => " << buffer << std::endl;
+					std::cout << "Error: bad input  => " << buffer << std::endl;
 					continue;
 				}
 				int year = std::atoi(strYear.c_str());
 				if(year > 2023)
 				{
 					parsingError = true;
-					std::cout << "Error: bad year as input  => " << buffer << std::endl;
+					std::cout << "Error: bad input  => " << buffer << std::endl;
 					continue;
 				}
 			}
 			catch (std::exception &e)
 			{
 				parsingError = true;
-				std::cout << "Error: bad year input => " << buffer << std::endl;
+				std::cout << "Error: bad input => " << buffer << std::endl;
 				continue;
 			}
 		}
 		else
 		{
 			parsingError = true;
-			std::cout << "Error: bad year input => " << buffer << std::endl;
+			std::cout << "Error: bad input => " << buffer << std::endl;
 			continue;
 		}
 		size_t secondDash = word.find('-', firstDash + 1);
@@ -94,7 +99,7 @@ void BitcoinExchange::getDateAndVal ( char *input )
 			if(!isAllDigitDate(strMonth))
 			{
 				parsingError = true;
-				std::cout << "Error: bad month as input  => " << buffer << std::endl;
+				std::cout << "Error: bad input  => " << buffer << std::endl;
 				continue;
 			}
 			try
@@ -103,28 +108,28 @@ void BitcoinExchange::getDateAndVal ( char *input )
 				if(month > 12)
 				{
 					parsingError = true;
-					std::cout << "Error: bad month input => " << buffer << std::endl;
+					std::cout << "Error: bad input => " << buffer << std::endl;
 					continue;
 				}
 			}
 			catch (std::exception &e)
 			{
 				parsingError = true;
-				std::cout << "Error: bad month input => " << buffer << std::endl;
+				std::cout << "Error: bad input => " << buffer << std::endl;
 				continue;
 			}
 		}
 		else
 		{
 			parsingError = true;
-			std::cout << "Error: bad month input => " << buffer << std::endl;
+			std::cout << "Error: bad input => " << buffer << std::endl;
 			continue;
 		}
 		std::string strDay = word.substr(secondDash + 1);
 		if(!isAllDigitDate(strDay))
 		{
 			parsingError = true;
-			std::cout << "Error: bad day as input  => " << buffer << std::endl;
+			std::cout << "Error: bad input  => " << buffer << std::endl;
 			continue;
 		}
 		try
@@ -133,14 +138,14 @@ void BitcoinExchange::getDateAndVal ( char *input )
 			if(day > 31)
 			{
 				parsingError = true;
-				std::cout << "Error: bad day input => " << buffer << std::endl;
+				std::cout << "Error: bad input => " << buffer << std::endl;
 				continue;
 			}
 		}
 		catch (std::exception &e)
 		{
 			parsingError = true;
-			std::cout << "Error: bad day input => " << buffer << std::endl;
+			std::cout << "Error: bad input => " << buffer << std::endl;
 			continue;
 		}
 		this->date = word;

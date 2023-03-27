@@ -86,7 +86,7 @@ int	RPN::calculateNums( std::string &nums )
 			}
 			try
 			{
-				numStack.push(std::stoi(word));
+				numStack.push(std::atoi(word.c_str()));
 			}
 			catch(const std::exception& e)
 			{

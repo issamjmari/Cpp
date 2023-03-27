@@ -19,6 +19,8 @@ class PmergeMe
 		std::deque<std::pair<int, int> >     DeqpairValues;
 		std::deque<int>        DeqOutput;
 		std::deque<int>        DeqinsertedValues;
+		int					   biggest;
+		bool				   is_sorted;
 	public:
 		PmergeMe(void);
 		PmergeMe(const PmergeMe &);

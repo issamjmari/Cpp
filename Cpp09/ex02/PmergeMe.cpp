@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(void) : isOdd(0), leftOddNum(0)
+PmergeMe::PmergeMe(void) : biggest(-1), is_sorted(1), isOdd(0), leftOddNum(0)
 {
 
 }
@@ -68,13 +68,13 @@ void	PmergeMe::insertSmallerDeqValsToOutput( void )
 }
 void	PmergeMe::printVecAlgoTime( void )
 {
-	std::cout << "Time to process a range of " << this->vecSize <<
+	std::cout << "Time to process a range of " << this->vecSize - 1 <<
             " elements with std::vector : "<< this->VecexecuteTime << " us\n";
 }
 void	PmergeMe::printDeqAlgoTime( void )
 {
 	gettimeofday(&end_time2, NULL);
-	std::cout << "Time to process a range of " << this->vecSize <<
+	std::cout << "Time to process a range of " << this->vecSize - 1 <<
             " elements with std::deque : "<< (static_cast<float>(((end_time2.tv_sec) / 1000000 + end_time2.tv_usec) -
             ((start_time2.tv_sec) / 1000000.0 + start_time2.tv_usec))) << " us\n";
 }
@@ -108,10 +108,13 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 					std::string str = std::string(currentArr); 
 					if(!isAllDigit(str))
 					{
-						std::cout << "input " << str << " is not a number\n";
+						std::cout << "input " << str << " is not a positive integer\n";
 						exit(1);
 					}
 					num1 = std::atoi(currentArr);
+					if(num1 < this->biggest)
+						this->is_sorted = false;
+					this->biggest = num1;
 					i++;
 				}
 				currentArr = vector[i];
@@ -120,10 +123,13 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 					std::string str = std::string(currentArr); 
 					if(!isAllDigit(str))
 					{
-						std::cout << "input " << str << " is not a number\n";
+						std::cout << "input " << str << " is not a positive integer\n";
 						exit(1);
 					}
 					num2 = std::atoi(currentArr);
+					if(num2 < this->biggest)
+						this->is_sorted = false;
+					this->biggest = num2;
 					i++;
 					this->VecpairValues.push_back(std::make_pair(num1, num2));
 				}
@@ -131,14 +137,22 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 			std::string str = std::string(vector[i]); 
 			if(!isAllDigit(str))
 			{
-				std::cout << "input " << str << " is not a number\n";
+				std::cout << "input " << str << " is not a positive integer\n";
 				exit(1);
 			}
-			this->VecinsertedValues.insert(this->VecinsertedValues.begin(), atoi(vector[i]));
+			int last_num = atoi(vector[i]);
+			if(last_num < this->biggest)
+				this->is_sorted = false;
+			this->VecinsertedValues.insert(this->VecinsertedValues.begin(), last_num);
 		}
 		catch(const std::exception& e)
 		{
 			errorCause("Error: something wrong happened");
+		}
+		if(this->is_sorted == true)
+		{
+			std::cout << "array is already sorted\n";
+			exit(1);
 		}
 	}
 	else
@@ -155,10 +169,13 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 					std::string str = std::string(vector[i]); 
 					if(!isAllDigit(str))
 					{
-						std::cout << "input " << str << " is not a number\n";
+						std::cout << "input " << str << " is not a positive integer\n";
 						exit(1);
 					}
 					num1 = std::atoi(currentArr);
+					if(num1 < this->biggest)
+						this->is_sorted = false;
+					this->biggest = num1;
 					i++;
 				}
 				currentArr = vector[i];
@@ -167,10 +184,13 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 					std::string str = std::string(vector[i]); 
 					if(!isAllDigit(str))
 					{
-						std::cout << "input " << str << " is not a number\n";
+						std::cout << "input " << str << " is not a positive integer\n";
 						exit(1);
 					}
 					num2 = std::atoi(currentArr);
+					if(num2 < this->biggest)
+						this->is_sorted = false;
+					this->biggest = num2;
 					i++;
 					this->VecpairValues.push_back(std::make_pair(num1, num2));
 				}
@@ -179,6 +199,11 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 		catch(const std::exception& e)
 		{
 			errorCause("Error: something wrong happened");
+		}
+		if(this->is_sorted == true)
+		{
+			std::cout << "array is already sorted\n";
+			exit(1);
 		}
 	}
 	gettimeofday(&this->start_time1, NULL);

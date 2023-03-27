@@ -80,7 +80,7 @@ int	RPN::calculateNums( std::string &nums )
 			{
 				if(!isdigit(word[i]))
 				{
-					std::cout << "Error : expression has invalid input\n\n";
+					std::cout << "Error : expression has invalid input\n";
 					exit(1);
 				}
 			}
@@ -90,7 +90,7 @@ int	RPN::calculateNums( std::string &nums )
 			}
 			catch(const std::exception& e)
 			{
-				std::cout << "Error : wrong number input\n\n";
+				std::cout << "Error : wrong number input\n";
 				exit(1);
 			}
 		}

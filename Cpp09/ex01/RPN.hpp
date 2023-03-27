@@ -10,6 +10,7 @@
 		private:
 			int operands;
 			int numbers;
+			std::stack<int> numStack;
 		public:
 			RPN(void);
 			RPN(const RPN &);
@@ -18,6 +19,5 @@
 			int calculateNums( std::string & );
 			bool isValidInput( std::string & );
 			bool isOperand(std::string &word);
-			std::stack<int> numStack;
 	};
 #endif

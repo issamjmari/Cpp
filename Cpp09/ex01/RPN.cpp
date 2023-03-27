@@ -32,11 +32,11 @@ bool RPN::isValidInput( std::string &nums)
 }
 int	RPN::calculateNums( std::string &nums )
 {
-	if(!isValidInput(nums))
-	{
-		std::cout << "expression can't be calculated\n";
-		exit(1);
-	}
+	// if(!isValidInput(nums))
+	// {
+	// 	std::cout << "expression can't be calculated\n";
+	// 	exit(1);
+	// }
 	std::stringstream data(nums);
 	std::string word;
 	while(data >> word)
@@ -86,7 +86,8 @@ int	RPN::calculateNums( std::string &nums )
 			}
 			try
 			{
-				numStack.push(std::atoi(word.c_str()));
+				for(size_t i = 0; i < word.length(); i++)
+					numStack.push(word[i] - '0');
 			}
 			catch(const std::exception& e)
 			{

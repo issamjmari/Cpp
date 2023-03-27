@@ -45,6 +45,27 @@ bool 	BitcoinExchange::isAllDigitDate( std::string &str )
 	}
 	return 1;
 }
+
+bool	valueIsNotValid(std::string &value)
+{
+	bool onlyPoint = false;
+	if(!isdigit(value[0]))
+		return 1;
+	for(size_t i = 0; i < value.length(); i++)
+	{
+		if(value[i] == '.' && !onlyPoint)
+		{
+			onlyPoint = true;
+			continue;
+		}
+		if(!isdigit(value[i]))
+			return 1;
+		if(i == value.length() - 1 && !isdigit(value[i]))
+			return 1;
+	}
+	return 0;
+}
+
 void BitcoinExchange::getDateAndVal ( char *input )
 {
 	this->inputDatesFile.open(input);
@@ -65,7 +86,7 @@ void BitcoinExchange::getDateAndVal ( char *input )
 			std::string strYear = word.substr(0, firstDash);
 			try
 			{
-				if(!isAllDigitDate(strYear))
+				if(!isAllDigitDate(strYear) || strYear.length() != 4)
 				{
 					parsingError = true;
 					std::cout << "Error: bad input  => " << buffer << std::endl;
@@ -96,7 +117,7 @@ void BitcoinExchange::getDateAndVal ( char *input )
 		if(secondDash)
 		{
 			std::string strMonth = word.substr(firstDash + 1, secondDash - firstDash - 1);
-			if(!isAllDigitDate(strMonth))
+			if(!isAllDigitDate(strMonth) || strMonth.length() != 2)
 			{
 				parsingError = true;
 				std::cout << "Error: bad input  => " << buffer << std::endl;
@@ -126,7 +147,7 @@ void BitcoinExchange::getDateAndVal ( char *input )
 			continue;
 		}
 		std::string strDay = word.substr(secondDash + 1);
-		if(!isAllDigitDate(strDay))
+		if(!isAllDigitDate(strDay) || strDay.length() != 2)
 		{
 			parsingError = true;
 			std::cout << "Error: bad input  => " << buffer << std::endl;
@@ -158,7 +179,13 @@ void BitcoinExchange::getDateAndVal ( char *input )
 		}
 		try
 		{
-			data >> this->value;
+			data >> word;
+			if(valueIsNotValid(word))
+			{
+				std::cout << "value is not valid\n";
+				continue;
+			}
+			this->value = std::atof(word.c_str());
 			if(this->value > 1000)
 			{
 				parsingError = true;
@@ -175,7 +202,10 @@ void BitcoinExchange::getDateAndVal ( char *input )
 				mapIt = this->exchangeRates.lower_bound(this->date);
 			std::cout << this->date << " => ";
 			std::cout << this->value << " = ";
-			std::cout << (this->value * mapIt->second) << std::endl;
+			if(mapIt != this->exchangeRates.end())
+				std::cout << (this->value * mapIt->second) << std::endl;
+			else
+				std::cout << "0" << std::endl;
 		}
 		catch(std::exception &e)
 		{

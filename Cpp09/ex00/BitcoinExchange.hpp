@@ -20,7 +20,7 @@
 			int 					   fileLength;
 			std::map<std::string, double, std::greater<std::string> > exchangeRates;
 			std::string				   date;
-			double					   value;
+			float					   value;
 			bool					   parsingError;
 	};
 #endif

@@ -209,7 +209,7 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 	gettimeofday(&this->start_time1, NULL);
 	insertSmallerVecValsToOutput();
 	gettimeofday(&this->end_time1, NULL);
-	this->VecexecuteTime =  static_cast<float>(((end_time1.tv_sec) / 1000000 + end_time1.tv_usec) -
+	this->VecexecuteTime =  static_cast<float>(((end_time1.tv_sec) / 1000000.0 + end_time1.tv_usec) -
             ((start_time1.tv_sec) / 1000000.0 + start_time1.tv_usec));
 	std::cout << "Before: ";
 	for(int i = 1; i < vecSize; i++)

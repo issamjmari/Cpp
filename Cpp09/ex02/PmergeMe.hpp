@@ -40,5 +40,7 @@ class PmergeMe
 		void				    insertSmallerDeqValsToOutput( void );
 		void					printVecAlgoTime( void );
 		void					printDeqAlgoTime( void );
+		bool 					isAllDigit( std::string &str );
+		void					errorCause( const char *s);
 };
 #endif

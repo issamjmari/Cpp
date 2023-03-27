@@ -23,6 +23,11 @@ bool	PmergeMe::sortBySecond(std::pair<int, int> &firstPair
 	return firstPair.first < secondPair.first;
 }
 
+void	PmergeMe::errorCause( const char *s)
+{
+	std::cout << s << std::endl;
+	exit(1);
+}
 void	PmergeMe::insertSmallerVecValsToOutput( void )
 {
 	std::sort(this->VecpairValues.begin(), this->VecpairValues.end(), sortBySecond);
@@ -73,6 +78,17 @@ void	PmergeMe::printDeqAlgoTime( void )
             " elements with std::deque : "<< (static_cast<float>(((end_time2.tv_sec) / 1000000 + end_time2.tv_usec) -
             ((start_time2.tv_sec) / 1000000.0 + start_time2.tv_usec))) << " us\n";
 }
+
+bool 	PmergeMe::isAllDigit( std::string &str )
+{
+	for(size_t i = 0; i < str.length(); i++)
+	{
+		if(!isdigit(str[i]))
+			return 0;
+	}
+	return 1;
+}
+
 void PmergeMe::pairingVector( int vecSize , char **vector)
 {
 	this->vecSize = vecSize;
@@ -89,23 +105,40 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 				char *currentArr = vector[i];
 				if(currentArr)
 				{
+					std::string str = std::string(currentArr); 
+					if(!isAllDigit(str))
+					{
+						std::cout << "input " << str << " is not a number\n";
+						exit(1);
+					}
 					num1 = std::atoi(currentArr);
 					i++;
 				}
 				currentArr = vector[i];
 				if(currentArr)
 				{
+					std::string str = std::string(currentArr); 
+					if(!isAllDigit(str))
+					{
+						std::cout << "input " << str << " is not a number\n";
+						exit(1);
+					}
 					num2 = std::atoi(currentArr);
 					i++;
 					this->VecpairValues.push_back(std::make_pair(num1, num2));
 				}
 			}
+			std::string str = std::string(vector[i]); 
+			if(!isAllDigit(str))
+			{
+				std::cout << "input " << str << " is not a number\n";
+				exit(1);
+			}
 			this->VecinsertedValues.insert(this->VecinsertedValues.begin(), atoi(vector[i]));
 		}
 		catch(const std::exception& e)
 		{
-			std::cout << "Error: something wrong happened\n";
-			exit(1);
+			errorCause("Error: something wrong happened");
 		}
 	}
 	else
@@ -119,12 +152,24 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 				char *currentArr = vector[i];
 				if(currentArr)
 				{
+					std::string str = std::string(vector[i]); 
+					if(!isAllDigit(str))
+					{
+						std::cout << "input " << str << " is not a number\n";
+						exit(1);
+					}
 					num1 = std::atoi(currentArr);
 					i++;
 				}
 				currentArr = vector[i];
 				if(currentArr)
 				{
+					std::string str = std::string(vector[i]); 
+					if(!isAllDigit(str))
+					{
+						std::cout << "input " << str << " is not a number\n";
+						exit(1);
+					}
 					num2 = std::atoi(currentArr);
 					i++;
 					this->VecpairValues.push_back(std::make_pair(num1, num2));
@@ -133,8 +178,7 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 		}
 		catch(const std::exception& e)
 		{
-			std::cout << "Error: something wrong happened\n";
-			exit(1);
+			errorCause("Error: something wrong happened");
 		}
 	}
 	gettimeofday(&this->start_time1, NULL);
@@ -153,6 +197,7 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 	std::cout << "\n";
 	printVecAlgoTime();
 }
+
 void PmergeMe::pairingDeque( int vecSize , char **vector)
 {
 	this->vecSize = vecSize;
@@ -184,8 +229,7 @@ void PmergeMe::pairingDeque( int vecSize , char **vector)
 		}
 		catch(const std::exception& e)
 		{
-			std::cout << "Error: something wrong happened\n";
-			exit(1);
+			errorCause("Error: something wrong happened");
 		}
 	}
 	else
@@ -213,8 +257,7 @@ void PmergeMe::pairingDeque( int vecSize , char **vector)
 		}
 		catch(const std::exception& e)
 		{
-			std::cout << "Error: something wrong happened\n";
-			exit(1);
+			errorCause("Error: something wrong happened");
 		}
 	}
 	gettimeofday(&this->start_time2, NULL);

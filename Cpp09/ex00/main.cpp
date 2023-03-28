@@ -23,6 +23,7 @@ int main(int ac, char **argv)
 	{
 		std::cerr << "database had problems" << '\n';
 		std::cerr << "the problem was : " << e.what() << '\n';
+		return 1;
 	}
 	try
 	{
@@ -32,5 +33,6 @@ int main(int ac, char **argv)
 	{
 		std::cerr << "database had problems" << '\n';
 		std::cerr << "the problem was : " << e.what() << '\n';
+		return 1;
 	}
 }

@@ -35,7 +35,7 @@ class PmergeMe
 		struct timeval end_time2;
 		float					VecexecuteTime;
 		int					    vecSize;			
-		static bool					sortBySecond( std::pair<int, int> &, std::pair<int, int> & );
+		static bool					sortByFirst( std::pair<int, int> &, std::pair<int, int> & );
 		bool				    isOdd;
 	public:
 		PmergeMe(void);

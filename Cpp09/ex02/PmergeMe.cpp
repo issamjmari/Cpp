@@ -39,7 +39,7 @@ bool PmergeMe::isDeqsorted(std::deque<int> &deq)
     return true;
 }
 
-bool	PmergeMe::sortBySecond(std::pair<int, int> &firstPair
+bool	PmergeMe::sortByFirst(std::pair<int, int> &firstPair
    , std::pair<int, int> &secondPair )
 {
 	return firstPair.first < secondPair.first;
@@ -58,7 +58,7 @@ void	PmergeMe::insertSmallerVecValsToOutput( void )
 		if(vecIt->first < vecIt->second)
 			std::swap(vecIt->first, vecIt->second);
 	}
-	std::sort(this->VecpairValues.begin(), this->VecpairValues.end(), sortBySecond);
+	std::sort(this->VecpairValues.begin(), this->VecpairValues.end(), sortByFirst);
 	std::vector<std::pair<int, int> >::iterator vecIt2 = this->VecpairValues.begin();
 	for(; vecIt2 != this->VecpairValues.end(); vecIt2++)
 	{
@@ -81,7 +81,7 @@ void	PmergeMe::insertSmallerDeqValsToOutput( void )
 		if(DeqIt->first < DeqIt->second)
 			std::swap(DeqIt->first, DeqIt->second);
 	}
-	std::sort(this->DeqpairValues.begin(), this->DeqpairValues.end(), sortBySecond);
+	std::sort(this->DeqpairValues.begin(), this->DeqpairValues.end(), sortByFirst);
 	std::deque<std::pair<int, int> >::iterator DeqIt2 = this->DeqpairValues.begin();
 	for(; DeqIt2 != this->DeqpairValues.end(); DeqIt2++)
 	{

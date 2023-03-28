@@ -9,6 +9,15 @@ int main(int ac, char **av)
 	}
 	std::string statement(av[1]);
 	RPN rpn;
-	int result = rpn.calculateNums(statement);
+	int result;
+	try
+	{
+		result = rpn.calculateNums(statement);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+		return 1;
+	}
 	std::cout << result << std::endl;
 }

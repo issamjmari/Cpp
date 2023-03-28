@@ -8,6 +8,14 @@ int main(int ac, char **av)
 		exit(1);
 	}
 	PmergeMe sortMethod;
-	sortMethod.pairingVector(ac, av);
-	sortMethod.pairingDeque(ac, av);
+	try
+	{
+		sortMethod.pairingVector(ac, av);
+		sortMethod.pairingDeque(ac, av);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+		return 1;
+	}
 }

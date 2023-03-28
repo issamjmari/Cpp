@@ -7,6 +7,14 @@
 	#include <sstream>
 	class BitcoinExchange
 	{
+		private:
+			std::ifstream			   exchangeRatesFile;
+			std::ifstream			   inputDatesFile;
+			std::map<std::string, double, std::greater<std::string> > exchangeRates;
+			std::string				   date;
+			float					   value;
+			bool					   parsingError;
+			bool 					isAllDigitDate( std::string & );
 		public:
 			BitcoinExchange(void);
 			BitcoinExchange(const BitcoinExchange &);
@@ -14,13 +22,5 @@
 			BitcoinExchange &operator=(const BitcoinExchange &);
 			void fillExchangeRates( void );
 			void getDateAndVal ( char * );
-			bool 					isAllDigitDate( std::string & );
-			std::ifstream			   exchangeRatesFile;
-			std::ifstream			   inputDatesFile;
-			int 					   fileLength;
-			std::map<std::string, double, std::greater<std::string> > exchangeRates;
-			std::string				   date;
-			float					   value;
-			bool					   parsingError;
 	};
 #endif

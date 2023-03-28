@@ -17,6 +17,28 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &)
 	return *this;
 }
 
+
+bool PmergeMe::isVecsorted(std::vector<int>& vec) 
+{
+	if(vec.size() < 2) return false;
+    for (size_t i = 1; i < vec.size(); i++) {
+        if (vec[i] < vec[i - 1]) 
+		{
+            return false;
+        }
+    }
+    return true;
+}
+bool PmergeMe::isDeqsorted(std::deque<int> &deq) 
+{
+	if(deq.size() < 2) return false;
+    for (size_t i = 1; i < deq.size(); i++) {
+        if (deq[i] < deq[i - 1]) 
+            return false;
+    }
+    return true;
+}
+
 bool	PmergeMe::sortBySecond(std::pair<int, int> &firstPair
    , std::pair<int, int> &secondPair )
 {
@@ -30,12 +52,16 @@ void	PmergeMe::errorCause( const char *s)
 }
 void	PmergeMe::insertSmallerVecValsToOutput( void )
 {
+	std::vector<std::pair<int, int> >::iterator vecIt = this->VecpairValues.begin();
+	for(; vecIt != this->VecpairValues.end(); vecIt++)
+	{
+		if(vecIt->first < vecIt->second)
+			std::swap(vecIt->first, vecIt->second);
+	}
 	std::sort(this->VecpairValues.begin(), this->VecpairValues.end(), sortBySecond);
 	std::vector<std::pair<int, int> >::iterator vecIt2 = this->VecpairValues.begin();
 	for(; vecIt2 != this->VecpairValues.end(); vecIt2++)
 	{
-		if(vecIt2->first < vecIt2->second)
-			std::swap(vecIt2->first, vecIt2->second);
 		this->VecOutput.push_back(vecIt2->first);
 		this->VecinsertedValues.push_back(vecIt2->second);
 	}
@@ -49,12 +75,16 @@ void	PmergeMe::insertSmallerVecValsToOutput( void )
 }
 void	PmergeMe::insertSmallerDeqValsToOutput( void )
 {
+	std::deque<std::pair<int, int> >::iterator DeqIt = this->DeqpairValues.begin();
+	for(; DeqIt != this->DeqpairValues.end(); DeqIt++)
+	{
+		if(DeqIt->first < DeqIt->second)
+			std::swap(DeqIt->first, DeqIt->second);
+	}
 	std::sort(this->DeqpairValues.begin(), this->DeqpairValues.end(), sortBySecond);
 	std::deque<std::pair<int, int> >::iterator DeqIt2 = this->DeqpairValues.begin();
 	for(; DeqIt2 != this->DeqpairValues.end(); DeqIt2++)
 	{
-		if(DeqIt2->first < DeqIt2->second)
-			std::swap(DeqIt2->first, DeqIt2->second);
 		this->DeqOutput.push_back(DeqIt2->first);
 		this->DeqinsertedValues.push_back(DeqIt2->second);
 	}
@@ -112,6 +142,11 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 						exit(1);
 					}
 					num1 = std::atoi(currentArr);
+					if(num1 < 0)
+					{
+						std::cout << "number " << currentArr << " is too large for an integer\n";
+						exit(1);
+					}
 					if(num1 < this->biggest)
 						this->is_sorted = false;
 					this->biggest = num1;
@@ -127,6 +162,11 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 						exit(1);
 					}
 					num2 = std::atoi(currentArr);
+					if(num2 < 0)
+					{
+						std::cout << "number " << currentArr << " is too large for an integer\n";
+						exit(1);
+					}
 					if(num2 < this->biggest)
 						this->is_sorted = false;
 					this->biggest = num2;
@@ -143,7 +183,7 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 			int last_num = atoi(vector[i]);
 			if(last_num < this->biggest)
 				this->is_sorted = false;
-			this->VecinsertedValues.insert(this->VecinsertedValues.begin(), last_num);
+			this->VecinsertedValues.insert(this->VecinsertedValues.end(), last_num);
 		}
 		catch(const std::exception& e)
 		{
@@ -173,6 +213,11 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 						exit(1);
 					}
 					num1 = std::atoi(currentArr);
+					if(num1 < 0)
+					{
+						std::cout << "number " << currentArr << " is too large for an integer\n";
+						exit(1);
+					}
 					if(num1 < this->biggest)
 						this->is_sorted = false;
 					this->biggest = num1;
@@ -188,6 +233,11 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 						exit(1);
 					}
 					num2 = std::atoi(currentArr);
+					if(num2 < 0)
+					{
+						std::cout << "number " << currentArr << " is too large for an integer\n";
+						exit(1);
+					}
 					if(num2 < this->biggest)
 						this->is_sorted = false;
 					this->biggest = num2;

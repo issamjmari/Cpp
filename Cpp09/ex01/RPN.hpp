@@ -11,13 +11,13 @@
 			int operands;
 			int numbers;
 			std::stack<int> numStack;
+			bool isValidInput( std::string & );
+			bool isOperand(std::string &word);
 		public:
 			RPN(void);
 			RPN(const RPN &);
 			~RPN(void);
 			RPN &operator=(const RPN &);
 			int calculateNums( std::string & );
-			bool isValidInput( std::string & );
-			bool isOperand(std::string &word);
 	};
 #endif

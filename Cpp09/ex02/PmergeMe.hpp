@@ -21,11 +21,14 @@ class PmergeMe
 		std::deque<int>        DeqinsertedValues;
 		int					   biggest;
 		bool				   is_sorted;
-	public:
-		PmergeMe(void);
-		PmergeMe(const PmergeMe &);
-		~PmergeMe(void);
-		PmergeMe &operator=(const PmergeMe &);
+		void				    insertSmallerVecValsToOutput( void );
+		void				    insertSmallerDeqValsToOutput( void );
+		void					printVecAlgoTime( void );
+		void					printDeqAlgoTime( void );
+		bool 					isAllDigit( std::string &str );
+		void					errorCause( const char *s);
+		bool 					isVecsorted(std::vector<int>& vec);
+		bool 					isDeqsorted(std::deque<int> &deq);
 		struct timeval start_time1;
 		struct timeval end_time1;
 		struct timeval start_time2;
@@ -36,13 +39,12 @@ class PmergeMe
 		static bool					sortBySecond( std::pair<int, int> &, std::pair<int, int> & );
 		bool				    isOdd;
 		int						leftOddNum;
+	public:
+		PmergeMe(void);
+		PmergeMe(const PmergeMe &);
+		~PmergeMe(void);
+		PmergeMe &operator=(const PmergeMe &);
 		void				    pairingVector(  int , char ** );
-		void				    insertSmallerVecValsToOutput( void );
 		void				    pairingDeque(  int , char ** );
-		void				    insertSmallerDeqValsToOutput( void );
-		void					printVecAlgoTime( void );
-		void					printDeqAlgoTime( void );
-		bool 					isAllDigit( std::string &str );
-		void					errorCause( const char *s);
 };
 #endif

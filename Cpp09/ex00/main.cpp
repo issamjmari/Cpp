@@ -13,8 +13,6 @@ int main(int ac, char **argv)
 		std::cout << "Error: could not open file.\n";
 		exit (1);
 	}
-		
-	(void) argv;
 
 	BitcoinExchange exchange;
 	try

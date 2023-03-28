@@ -12,7 +12,7 @@ OBJECTS=$(SOURCES:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJECTS)
-	$(CC) $(CPPFLAGS) `$(OBJECTS) -o $(NAME)
+	$(CC) $(CPPFLAGS) $(OBJECTS) -o $(NAME)
 
 $(OBJECTS) : $(HEADERS)
 

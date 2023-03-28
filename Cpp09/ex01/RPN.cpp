@@ -26,17 +26,20 @@ bool RPN::isValidInput( std::string &nums)
 		if(isOperand(word))
 			this->operands++;
 		else
-			this->numbers++;
+		{
+			for(size_t i = 0; i < word.length(); i++)
+				this->numbers++;
+		}
 	}
 	return (this->numbers == this->operands + 1);
 }
 int	RPN::calculateNums( std::string &nums )
 {
-	// if(!isValidInput(nums))
-	// {
-	// 	std::cout << "expression can't be calculated\n";
-	// 	exit(1);
-	// }
+	if(!isValidInput(nums))
+	{
+		std::cout << "expression can't be calculated\n";
+		exit(1);
+	}
 	std::stringstream data(nums);
 	std::string word;
 	while(data >> word)

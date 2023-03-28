@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(void) : biggest(-1), is_sorted(1), isOdd(0), leftOddNum(0)
+PmergeMe::PmergeMe(void) : biggest(-1), is_sorted(1), isOdd(0)
 {
 
 }
@@ -181,9 +181,14 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
 				exit(1);
 			}
 			int last_num = atoi(vector[i]);
+			if(last_num < 0)
+			{
+				std::cout << "number " << vector[i] << " is too large for an integer\n";
+				exit(1);
+			}
 			if(last_num < this->biggest)
 				this->is_sorted = false;
-			this->VecinsertedValues.insert(this->VecinsertedValues.end(), last_num);
+			this->VecinsertedValues.insert(this->VecinsertedValues.begin(), last_num);
 		}
 		catch(const std::exception& e)
 		{
@@ -263,12 +268,26 @@ void PmergeMe::pairingVector( int vecSize , char **vector)
             ((start_time1.tv_sec) / 1000000.0 + start_time1.tv_usec));
 	std::cout << "Before: ";
 	for(int i = 1; i < vecSize; i++)
+	{
+		if(i > 5)
+		{
+			std::cout << "[...]";
+			break;
+		}
 		std::cout << vector[i] << " ";
+	}
 	std::cout << "\n";
 	std::cout << "After: ";
 	std::vector<int>::iterator outIt = this->VecOutput.begin();
-	for(; outIt != this->VecOutput.end(); outIt++)
+	for(int i = 0; outIt != this->VecOutput.end(); outIt++, i++)
+	{
+		if(i > 4)
+		{
+			std::cout << "[...]";
+			break;
+		}
 		std::cout << *outIt << " ";
+	}
 	std::cout << "\n";
 	printVecAlgoTime();
 }
